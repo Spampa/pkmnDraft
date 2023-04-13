@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/dist/output.css" rel="stylesheet">
+  <title>Login - Pokémon Draft</title>
+</head>
+
+<body>
+  <div class=" bg-light-true-blue h-screen grid align-middle place-content-center text-white ">
+    <div class="container grid place-content-center gap-5 p-20 bg-black rounded">
+        <img class="w-80" src="../../assets/IMG/logo.png" alt="">
+        <input class="bg-light-black py-3 pl-3 rounded" placeholder="Mail:" type="email" id="mail">
+        <input class="bg-light-black py-3 pl-3 rounded" placeholder="Password:" type="password" id="password">
+        <button class="bg-true-blue py-3 rounded transition-colors hover:bg-light-true-blue text-white font-bold text-xl" id="login">ACCEDI</button>
+        <h4 class="text-ochre text-center" id="error"></h4>
+        <h4 class="text-center">Non hai un account?</h4>
+        <a href="../register/register.html" class="bg-maize text-center py-3 rounded transition-colors hover:bg-light-maize text-black font-bold text-xl">REGISTRATI</a>
+    </div>
+  </div>
+
+  <script type="module">
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAvMrtUSY_F6ThumCsWIqB2B0zYakFbjRs",
+      authDomain: "pokemon-draft-eea34.firebaseapp.com",
+      databaseURL: "https://pokemon-draft-eea34-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "pokemon-draft-eea34",
+      storageBucket: "pokemon-draft-eea34.appspot.com",
+      messagingSenderId: "1015541675256",
+      appId: "1:1015541675256:web:16a523f42761aff556b70d",
+      measurementId: "G-EYQRM6KP16"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const loginBtn = document.getElementById("login");
+    const errore = document.getElementById("error");
+
+    loginBtn.addEventListener('click', () => {
+      const mail = document.getElementById("mail").value;
+      const password = document.getElementById("password").value;
+      signInWithEmailAndPassword(auth, mail, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          window.location.href = "../../index.html";
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          if(errorCode == "auth/wrong-password"){
+            errore.innerHTML = "Password errata";
+          }
+          else if(errorCode == "auth/user-not-found"){
+            errore.innerHTML = "Utente non trovato";
+          }
+          else if(errorCode == "auth/invalid-email"){
+            errore.innerHTML = "Email non valida";
+          }
+        });
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/dist/output.css" rel="stylesheet">
+  <title>Play - Pokémon Draft</title>
+</head>
+
+<body>
+  <div
+    class="fixed z-30 w-screen xl:w-52 bg-black grid grid-rows-4 text-light-white text-2xl  h-screen font-medium invisible xl:visible"
+    id="header">
+    <div class="row-span-3 h-full">
+      <div class="container flex flex-row gap-3 pt-5 px-5 w-full hidden xl:hidden" id="inMenuBurger">
+        <!-- Burger on Menu -->
+        <button>
+          <div class="container flex flex-col w-10 gap-1 place-content-center">
+            <div class="py-1 bg-white rounded rotate-45 translate-y-1"></div>
+            <div class="py-1 bg-white rounded -rotate-45 translate-y-[-7px]"></div>
+          </div>
+        </button>
+        <img class="h-20" src="../../assets/IMG/logo.png" alt="">
+      </div>
+
+      <div class="container pt-3">
+        <img class="hidden xl:block" src="../../assets/IMG/logo.png" alt="">
+      </div>
+
+      <a href="../../index.html">
+        <div class="flex flex-row container p-5 md:p-3 hover:bg-light-black hover:text-white">
+          <h2>Home</h2>
+        </div>
+      </a>
+      <a href="#">
+        <div class="container p-5 md:p-3 hover:bg-light-black hover:text-white">
+          <h2>Play</h2>
+        </div>
+      </a>
+      <a href="#">
+        <div class="container p-5 md:p-3 hover:bg-light-black hover:text-white">
+          <h2>Classifica</h2>
+        </div>
+      </a>
+    </div>
+    <div class="container p-5 md:p-3">
+      <a href="../login/login.html">ACCEDI</a>
+    </div>
+  </div>
+
+
+  <div class=" md:ml-0 xl:ml-52 bg-true-blue xl:p-10 h-screen">
+    <!-- Burger -->
+    <div class="h-[15%] container px-5 flex flex-row gap-3 w-full visible xl:hidden align-middle">
+      <button id="burger">
+        <div class="container flex flex-col w-10 gap-1 place-content-center">
+          <div class="py-1 bg-light-black rounded"></div>
+          <div class="py-1 bg-light-black rounded"></div>
+          <div class="py-1 bg-light-black rounded"></div>
+        </div>
+      </button>
+      <div class="container align-middle grid place-content-center w-36">
+        <img  src="../../assets/IMG/logo.png" alt="">
+      </div>
+    </div>
+
+    <div class="h-[85%] xl:h-full p-2">
+      <div class="h-full grid place-items-center items-stretch bg-black  w-full rounded " id="preGame">
+
+        <div class="grid place-items-center" id="playContainer">
+          <button class="bg-maize transition-colors hover:bg-light-maize rounded-full px-7 py-1 text-4xl font-bold"
+            id="playBtn">PLAY!</button>
+        </div>
+
+        <!-- Draft -->
+        <div class="flex items-stretch w-full hidden" id="draft">
+
+          <div class="container rounded grid place-content-center transition-colors hover:bg-maize" id="draftPkmn1">
+            <img class="w-96" src="../../assets/IMG/sprites/pokemon/006.gif" alt="pokemon 1">
+          </div>
+
+          <div class="container rounded grid place-content-center transition-colors hover:bg-maize" id="draftPkmn2">
+            <img class="w-96" src="../../assets/IMG/sprites/pokemon/009.gif" alt="pokemon 2">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Game -->
+      <div class="row-span-5 xl:row-span-6 bg-black h-full w-full rounded hidden " id="game">
+        <div style="background-image: url(../../assets/IMG/battleBG.png);"
+          class="w-full h-[75%] bg-no-repeat bg-center bg-cover rounded">
+          <div class="flex flex-row w-full h-full">
+            <div class="container">
+              <img
+                class="transform -scale-x-100 w-60 sm:w-56 md:w-80 xl:w-96 relative left-[5%] top-[55%] sm:left-[5%] sm:top-[50%] md:left-[5%] md:top-[30%]"
+                src="../../assets/IMG/sprites/pokemon/003.gif" alt="pokemon 1" id="pkmn1">
+            </div>
+            <div class="container">
+              <img
+                class="w-60 sm:w-56 md:w-80 xl:w-96 relative left-[-10%] top-[18%] sm:left-[20%] sm:top-[30%] md:left-[17%] md:top-[20%]"
+                src="../../assets/IMG/sprites/pokemon/009.gif" alt="pokemon 2" id="pkmn2">
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 items-stretch gap-4 p-5 h-[25%]">
+          <button class="bg-ochre text-2xl font-bold text-left pl-5 rounded-sm">Mossa 1</button>
+          <button class="bg-ochre text-2xl font-bold text-left pl-5 rounded-sm">Mossa 2</button>
+          <button class="bg-ochre text-2xl font-bold text-left pl-5 rounded-sm">Mossa 3</button>
+          <button class="bg-ochre text-2xl font-bold text-left pl-5 rounded-sm">Mossa 4</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="./game.js"></script>
+</body>
+
+</html>

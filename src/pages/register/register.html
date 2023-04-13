@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/dist/output.css" rel="stylesheet">
+  <title>Register - Pokémon Draft</title>
+</head>
+
+<body>
+  <div class=" bg-light-maize h-screen grid align-middle place-content-center text-white ">
+    <div class="container grid place-content-center gap-5 p-14 px-20 bg-black rounded">
+      <img class="w-80" src="../../assets/IMG/logo.png" alt="">
+      <input type="email" class="bg-light-black py-3 pl-3 rounded" placeholder="Mail:" id="mail">
+      <input type="password" class="bg-light-black py-3 pl-3 rounded" placeholder="Password:"  id="password">
+      <input type="text" class="bg-light-black py-3 pl-3 rounded" placeholder="Username" id="username">
+      <h4 class="text-ochre text-center" id="error"></h4>
+      <button class="bg-maize py-3 rounded transition-colors hover:bg-light-maize text-black font-bold text-xl"
+        id="register">REGISTRATI</button>
+      <h4 class=" text-center">Hai già un account?</h4>
+      <a href="../login/login.html"
+        class="bg-true-blue text-center py-3 rounded transition-colors hover:bg-light-true-blue text-white font-bold text-xl">ACCEDI</a>
+    </div>
+  </div>
+  <script type="module" src="./register.js"></script>
+</body>
+
+</html>

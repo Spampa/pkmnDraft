@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/dist/output.css" rel="stylesheet">
+  <title>Home - Pokémon Draft</title>
+</head>
+
+<body>
+
+  <div class="fixed w-screen md:w-52 bg-black grid grid-rows-4 text-light-white text-2xl  h-screen font-medium invisible  md:visible" id="header">
+    <div class="row-span-3 h-full">
+      <div class="container flex flex-row gap-3 pt-10 px-5 w-full hidden md:hidden" id="inMenuBurger">
+        <!-- Burger on Menu -->
+        <button>
+          <div class="container flex flex-col w-10 gap-1 place-content-center">
+            <div class="py-1 bg-white rounded rotate-45 translate-y-1"></div>
+            <div class="py-1 bg-white rounded -rotate-45 translate-y-[-7px]"></div>
+          </div>
+        </button>
+        <img class="h-20" src="./assets/IMG/logo.png" alt="">
+      </div>
+
+      <div class="container pt-3">
+        <img class="hidden md:block" src="./assets/IMG/logo.png" alt="">
+      </div>
+
+      <a href="#">
+        <div class="flex flex-row container p-5 md:p-3 hover:bg-light-black hover:text-white">
+          <h2>Home</h2>
+        </div>
+      </a>
+      <a href="./pages/play/play.html">
+        <div class="container p-5 md:p-3 hover:bg-light-black hover:text-white">
+          <h2>Play</h2>
+        </div>
+      </a>
+      <a href="#">
+        <div class="container p-5 md:p-3 hover:bg-light-black hover:text-white">
+          <h2>Classifica</h2>
+        </div>
+      </a>
+    </div>
+    <div class="container p-5 md:p-3">
+      <a href="./pages/login/login.html">ACCEDI</a>
+    </div>
+  </div>
+
+  <div class="md:ml-52 p-3 md:pt-10 xl:grid xl:grid-cols-4 bg-true-blue min-h-screen text-white">
+    <div></div>
+    <div class="col-span-2">
+      <!-- Burger -->
+      <div class="container flex flex-row gap-3 w-full visible md:hidden">
+        <button id="burger">
+          <div class="container flex flex-col w-10 gap-1 place-content-center">
+            <div class="py-1 bg-light-black rounded"></div>
+            <div class="py-1 bg-light-black rounded"></div>
+            <div class="py-1 bg-light-black rounded"></div>
+          </div>
+        </button>
+        <img class="h-20" src="./assets/IMG/logo.png" alt="">
+      </div>
+
+      <!-- Profile -->
+      <div class="container hidden md:block">
+        <div class="flex flex-row">
+          <img class="h-10 rounded-sm" src="./assets/IMG/userIcon.jpg" alt="User icon">
+          <h3 class="font-bold mx-2" id="textUsername"></h3>
+        </div>
+      </div>
+
+      <div class="mt-3 grid gap-3">
+        <!-- News -->
+        <a href="./pages/play/play.html">
+          <div style="background-image: url(./assets/IMG/banner.jpg);" class="container w-full h-72 rounded bg-no-repeat bg-center bg-cover">
+            <div class="container h-full w-full bg-transparent-black rounded p-3 text-2xl">
+              <h1>Play Draft</h1>
+              <div class="container w-[70%]">
+                <p>Gioca alla modalità <span class="font-bold">DRAFT!</span> un nuovo modo di giocare a Pokémon che mette alla prova gli allenatori con uno scontro 4vs4</p>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Patch Notes -->
+        <a href="#">
+          <div style="background-image: url(./assets/IMG/patchBanner.jpg);" class="container w-full h-72 rounded bg-no-repeat bg-center bg-cover">
+            <div class="container h-full w-full bg-transparent-black rounded p-3 text-2xl">
+              <h1>Patch Notes 0.0.1</h1>
+              <div class="container w-[70%]">
+                <p>Scopri cosa abbiamo cambiato nel gioco con questa <span class="font-bold">Patch Notes</span> </p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div></div>
+  </div>
+  <script>
+    let burger = document.getElementById('burger');
+    let header = document.getElementById('header');
+    let inMenuBurger = document.getElementById('inMenuBurger')
+
+    burger.addEventListener('click', () => {
+      header.classList.remove('invisible');
+      inMenuBurger.classList.remove('hidden');
+    });
+
+    inMenuBurger.children[0].addEventListener('click', () => {
+      header.classList.add('invisible');
+      inMenuBurger.classList.add('hidden');
+      console.log("premuto");
+    });
+  </script>
+  <script type="module" src="../app.js"></script>
+</body>
+
+</html>

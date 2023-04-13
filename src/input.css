@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *{
+    font-family: Proxima Nova, system-ui, sans-serif;
+  }
+  h1{
+    font-size: theme('fontSize.4xl');
+    font-weight: 600;
+  }
+
+  h2{
+    font-size: theme('fontSize.3xl');
+    font-weight: 500;
+  }
+
+  h3{
+    font-size: theme('fontSize.2xl');
+    font-weight: 400;
+  }
+
+  h4{
+    font-size: theme('fontSize.xl');
+    font-weight: 300;
+  }
+
+  h5{
+    font-size: theme('fontSize.lg');
+    font-weight: 200;
+  }
+}
