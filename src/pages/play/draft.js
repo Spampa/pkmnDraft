@@ -91,8 +91,10 @@ function initPokemon() {
 
 
 playBtn.addEventListener("click", function () {
-  loadingScreen.classList.remove('hidden');
-  loadingScreen.classList.add('grid');
   searchMatch();
   document.getElementById('playContainer').classList.add('hidden');
+  loadingScreen.classList.remove('hidden');
+  loadingScreen.classList.add('grid');
+  generateDraftPkmn();
+  randomizeDraft();
 });

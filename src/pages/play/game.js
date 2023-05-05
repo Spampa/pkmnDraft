@@ -1,5 +1,5 @@
 import { getLastMove, getMatchMove, insertMove, playerIndex, enemyIndex, matchData, matchList } from "./connectionFunction.js";
-import { playerPkmn, enemyPkmn, generateDraftPkmn, randomizeDraft, loadingScreen } from "./draft.js";
+import { playerPkmn, enemyPkmn, loadingScreen, draft, generateDraftPkmn, randomizeDraft } from "./draft.js";
 
 
 setInterval(checkUpdate, 1000);
@@ -9,7 +9,6 @@ let move;
 
 function checkUpdate() {
     if (!pkmnInit) {
-
         getMatchMove().then(response => {
             for(let i = 0; i < response.data.moves.length; i++) {
                 let mossa = JSON.stringify(response.data.moves[i].MOSSA);
@@ -21,6 +20,7 @@ function checkUpdate() {
                     playerPkmn.push(mossa);
                     pkmnInit = true;
                     insertMove(playerIndex + 'eP' + playerPkmn[0] + ',' + playerPkmn[1]);
+                    console.log('player: ' + playerPkmn);
                     return;
                 }
             }
@@ -52,28 +52,9 @@ function checkUpdate() {
         });
         
     }
-
-    
-
-
-
-    /*
-    getLastMove().then(response => {
-        //fai il parse di response.data.play.MOSSA
-        let mossa = JSON.stringify(response.data.play.MOSSA);
-        let moveType = mossa.substring(1, 4);
-        mossa = mossa.substring(4, mossa.length - 1);
-
-        playerPkmn.push(mossa.substring(0, mossa.indexOf(',')));
-        mossa = mossa.substring(mossa.indexOf(',') + 1, mossa.length);
-        playerPkmn.push(mossa);
-        console.log(playerPkmn);
-
-    });
-    */
 }
 
-setInterval(() => {
+let checkPlayers = setInterval(() => {
     if(matchData?.ID == undefined) return;
     matchList().then(response => {
         for(let i = 0; i < response.data.length; i++){
@@ -82,11 +63,11 @@ setInterval(() => {
                 return;
             }            
         }
-        console.log('Qualcuno si è unito alla partita');
         loadingScreen.classList.add('hidden');
-        generateDraftPkmn();
-        randomizeDraft();
-
+        draft.classList.remove('hidden');
+        draft.classList.add('flex');
+        console.log('Partita iniziata');
+        clearInterval(checkPlayers);
     });
-    
+
 }, 1000);

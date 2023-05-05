@@ -1,3 +1,5 @@
+import { loadingScreen, draft } from "./draft.js";
+
 let credentials = btoa('4ID:Grena');
 let auth = {'Authorization': 'Basic ' + credentials};
 export let playerIndex;
@@ -25,19 +27,26 @@ export const matchList = async () => {
 }
 
 const joinGame = async (id) => {
-    console.log(id);
     let data = await fetch(`https://classe5ID.altervista.org/games/join/${id}/${'pkmn_'+localStorage.getItem('user_id')}`,{
         method: 'POST',
         headers: auth,
     });
     playerIndex = 1;
     enemyIndex = 0;
+    loadingScreen.classList.add('hidden');
+    draft.classList.remove('hidden');
+    draft.classList.add('flex');
+    console.log('Partita iniziata');
     data = await data.json();
     return data;
 }
 
 export const insertMove = async (move) => {
-    let data = await fetch(`https://classe5ID.altervista.org/games/mossa/${matchData.data.id}/${'pkmn_'+localStorage.getItem('user_id')}/${move}`, {
+    let id = matchData?.data?.id;
+    if(id == undefined){
+        id = matchData.ID;
+    }
+    let data = await fetch(`https://classe5ID.altervista.org/games/mossa/${id}/${'pkmn_'+localStorage.getItem('user_id')}/${move}`, {
         method: 'POST',
         headers: auth,
     });
@@ -46,7 +55,11 @@ export const insertMove = async (move) => {
 }
 
 export const getLastMove = async () => {
-    let data = await fetch(`https://classe5ID.altervista.org/games/mossa/${matchData.data.id}`, {
+    let id = matchData?.data?.id;
+    if(id == undefined){
+        id = matchData.ID;
+    }
+    let data = await fetch(`https://classe5ID.altervista.org/games/mossa/${id}`, {
         method: 'GET',
         headers: auth,
     });
@@ -55,7 +68,12 @@ export const getLastMove = async () => {
 }
 
 export const getMatchMove = async () => {
-    let data = await fetch(`https://classe5ID.altervista.org/games/mosse/${matchData.data.id}`, {
+    let id = matchData?.data?.id;
+    if(id == undefined){
+        id = matchData.ID;
+    }
+    console.log(id);
+    let data = await fetch(`https://classe5ID.altervista.org/games/mosse/${id}`, {
         method: 'GET',
         headers: auth,
     });
@@ -65,7 +83,7 @@ export const getMatchMove = async () => {
 
 
 export const searchMatch = async () => {
-    matchList().then(response => {
+    await matchList().then(response => {
         for(let i = 0; i < response.data.length; i++){
             if(response.data[i].PLAYER1.substring(0,5) == 'pkmn_'){
                 if(response.data[i].PLAYER2 == null){
@@ -73,7 +91,7 @@ export const searchMatch = async () => {
                         matchData = response;
                     });
                     console.log("Match joined");
-                    return 0;
+                    return;
                 }
             }
         }
@@ -89,10 +107,8 @@ export const searchMatch = async () => {
                 }
             });
             console.log("Match created");
-            
         });
     });
-
 }
 
 
