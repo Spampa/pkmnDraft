@@ -63,12 +63,12 @@
         </div>
       </button>
       <div class="container align-middle grid place-content-center w-36">
-        <img  src="../../assets/IMG/logo.png" alt="">
+        <img src="../../assets/IMG/logo.png" alt="">
       </div>
     </div>
 
     <div class="h-[85%] xl:h-full p-2">
-      <div class="h-full grid place-items-center items-stretch bg-black  w-full rounded " id="preGame">
+      <div class="h-full grid place-items-center items-stretch bg-black  w-full rounded" id="preGame">
 
         <!-- Loading -->
         <div class=" place-items-center hidden" id="loadingScreen">
@@ -97,30 +97,100 @@
       </div>
 
       <!-- Game -->
-      <div class="row-span-5 xl:row-span-6 bg-black h-full w-full rounded hidden " id="game">
+      <div class="grid grid-rows-4 row-span-5 xl:row-span-6 bg-black h-full w-full rounded hidden" id="game">
         <div style="background-image: url(../../assets/IMG/battleBG.png);"
-          class="w-full h-[75%] bg-no-repeat bg-center bg-cover rounded">
-          <div class="flex flex-row w-full h-full">
-            <div class="container">
-              <img
-                class="transform -scale-x-100 w-60 sm:w-56 md:w-80 xl:w-96 relative left-[5%] top-[55%] sm:left-[5%] sm:top-[50%] md:left-[5%] md:top-[30%]"
-                src="../../assets/IMG/sprites/pokemon/003.gif" alt="pokemon 1" id="pkmn1">
+          class="grid grid-cols-2 w-full row-span-3 bg-no-repeat bg-center bg-cover rounded">
+          <div class="flex flex-col place-content-between">
+            <!-- Other Pokemon -->
+            <div>
+              <div class="flex flex-row gap-3 p-5 h-full pr-20 otherPkmn">
+                <div
+                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[45px] h-[45px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
+                  <img class="object-contain" src="../../assets/IMG/sprites/pokemon/018.gif" alt="">
+                </div>
+                <div
+                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[45px] h-[45px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
+                  <img src="../../assets/IMG/sprites/pokemon/006.gif" alt="">
+                </div>
+                <div
+                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[45px] h-[45px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
+                  <img src="../../assets/IMG/sprites/pokemon/009.gif" alt="">
+                </div>
+                <div
+                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[45px] h-[45px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
+                  <img src="../../assets/IMG/sprites/pokemon/026.gif" alt="">
+                </div>
+              </div>
+
             </div>
-            <div class="container">
-              <img
-                class="w-60 sm:w-56 md:w-80 xl:w-96 relative left-[-10%] top-[18%] sm:left-[20%] sm:top-[30%] md:left-[17%] md:top-[20%]"
-                src="../../assets/IMG/sprites/pokemon/009.gif" alt="pokemon 2" id="pkmn1">
+            <!-- Pokemon -->
+            <div class="xl:row-span-2">
+              <img class="transform -scale-x-100 w-[40%] xl:w-[45%]" src="../../assets/IMG/sprites/pokemon/003.gif"
+                alt="pokemon 1" id="pkmn1">
+            </div>
+            <!-- Life Bar -->
+            <div class="p-3 pr-20">
+              <h3 class="font-bold">HP 10/20</h3>
+              <div class="bg-light-true-blue w-full p-2 rounded">
+                <div class="bg-maize w-full p-3 rounded">
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col place-content-between">
+            <!-- Life Bar -->
+            <div class="p-3 pr-20">
+              <h3 class="font-bold">HP 10/20</h3>
+              <div class="bg-light-true-blue w-full p-2 rounded">
+                <div class="bg-maize w-full p-3 rounded">
+
+                </div>
+              </div>
+            </div>
+            <!-- Pokemon -->
+            <div class="xl:row-span-2 flex place-content-end">
+              <img class="transform w-[40%] xl:w-[45%]" src="../../assets/IMG/sprites/pokemon/003.gif" alt="pokemon 1"
+                id="pkmn2">
+            </div>
+            <!-- Other Pokemon -->
+            <div class="relative flex place-content-end ">
+              <div class="flex flex-row gap-3 p-5 h-full pr-20 otherPkmn">
+                <div
+                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[45px] h-[45px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
+                  <img class="object-contain" src="../../assets/IMG/sprites/pokemon/018.gif" alt="">
+                </div>
+                <div
+                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[45px] h-[45px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
+                  <img src="../../assets/IMG/sprites/pokemon/006.gif" alt="">
+                </div>
+                <div
+                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[45px] h-[45px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
+                  <img src="../../assets/IMG/sprites/pokemon/009.gif" alt="">
+                </div>
+                <div
+                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[45px] h-[45px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
+                  <img src="../../assets/IMG/sprites/pokemon/026.gif" alt="">
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        <div class="grid grid-cols-2 items-stretch gap-4 p-5 h-[25%]" id="moves">
-          <button class="transition-colors bg-ochre hover:bg-light-maize text-2xl font-bold text-left pl-5 rounded-sm">Mossa 1</button>
-          <button class="transition-colors bg-ochre hover:bg-light-maize text-2xl font-bold text-left pl-5 rounded-sm">Mossa 2</button>
-          <button class="transition-colors bg-ochre hover:bg-light-maize text-2xl font-bold text-left pl-5 rounded-sm">Mossa 3</button>
-          <button class="transition-colors bg-ochre hover:bg-light-maize text-2xl font-bold text-left pl-5 rounded-sm">Mossa 4</button>
+        <div class="grid grid-cols-2 gap-4 p-5" id="moves">
+          <button
+            class="transition-colors bg-ochre hover:bg-light-maize text-2xl font-bold text-left pl-5 rounded-sm">Mossa
+            1</button>
+          <button
+            class="transition-colors bg-ochre hover:bg-light-maize text-2xl font-bold text-left pl-5 rounded-sm">Mossa
+            2</button>
+          <button
+            class="transition-colors bg-ochre hover:bg-light-maize text-2xl font-bold text-left pl-5 rounded-sm">Mossa
+            3</button>
+          <button
+            class="transition-colors bg-ochre hover:bg-light-maize text-2xl font-bold text-left pl-5 rounded-sm">Mossa
+            4</button>
         </div>
-
       </div>
     </div>
   </div>

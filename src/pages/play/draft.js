@@ -22,14 +22,21 @@ export const draft = document.getElementById("draft");
 const preGame = document.getElementById('preGame');
 const game = document.getElementById('game');
 export const loadingScreen = document.getElementById('loadingScreen');
+const otherPkmn = document.getElementsByClassName('otherPkmn');
+
 let pickCounter = 0;
 
 
 
 export function randomizeDraft() {
   if (pickCounter == 2) {
-    preGame.classList.add('hidden');
-    game.classList.remove('hidden');
+
+    draft.classList.add('hidden');
+    loadingScreen.classList.remove('hidden');
+    loadingScreen.children[1].innerHTML = 'In attesa del tuo avversario';
+    insertMove(playerIndex + 'pP' + enemyPkmn[0] + ',' + enemyPkmn[1]).then( () => {
+      getLastMove();
+    });
     return;
   }
 
@@ -65,27 +72,38 @@ draft.children[1].addEventListener('click', () => {
 
 const moves = document.getElementById('moves');
 export function initPokemon() {
-  console.log('initPokemon');
   const pkmn1 = document.getElementById('pkmn1');
   const pkmn2 = document.getElementById('pkmn2');
 
-  /*
   console.log(playerPkmn);
   console.log(enemyPkmn);
-  */
+
 
   pkmn1.src = imgPath + playerPkmn[0] + ".gif";
+  pkmn2.src = imgPath + enemyPkmn[0] + ".gif";
+
+  console.log(otherPkmn[1].children[0].children[0]);
+  for(let j = 0; j < 2; j++){
+    for (let i = 0; i < playerPkmn.length; i++) {
+      if(j == 0){
+        otherPkmn[j].children[i].children[0].src = imgPath + playerPkmn[i] + ".gif";
+      }
+      else{
+        otherPkmn[j].children[i].children[0].src = imgPath + enemyPkmn[i] + ".gif";
+      }
+
+    }
+  }
+
+
+  /*
   for (let i = 1; i <= 4; i++) {
     fetch('https://pokeapi.co/api/v2/move/' + i)
       .then(response => response.json())
       .then(data => {
         moves.children[i - 1].innerHTML = data.name;
       });
-  }
-
-  insertMove(playerIndex + 'pP' + enemyPkmn[0] + ',' + enemyPkmn[1]).then( () => {
-    getLastMove();
-  });
+  }*/
 }
 
 

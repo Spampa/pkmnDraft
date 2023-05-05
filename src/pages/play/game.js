@@ -7,10 +7,11 @@ let pkmnInit = false;
 let enemyPkmnInit = false;
 let move;
 
+const game = document.getElementById('game');
+
 function checkUpdate() {
     if (!pkmnInit) {
         getMatchMove().then(response => {
-            console.log(response);
             for(let i = 0; i < response.data.moves.length; i++) {
                 let mossa = JSON.stringify(response.data.moves[i].MOSSA);
                 let moveType = mossa.substring(1, 4);
@@ -29,9 +30,7 @@ function checkUpdate() {
         });
     }
     else if(!enemyPkmnInit) {
-        console.log(enemyPkmnInit);
         getMatchMove().then(response => {
-            
             for(let i = 0; i < response.data.moves.length; i++) {
                 let mossa = JSON.stringify(response.data.moves[i].MOSSA);
                 let moveType = mossa.substring(1, 4);
@@ -43,8 +42,11 @@ function checkUpdate() {
                     let temp = enemyPkmn[0];
                     enemyPkmn[0] = enemyPkmn[1];
                     enemyPkmn[1] = temp;
-                    console.log(playerPkmn);
-                    console.log(enemyPkmn);
+                    enemyPkmnInit = true;
+                    
+                    document.getElementById('game').classList.remove('hidden');
+                    document.getElementById('preGame').classList.add('hidden');
+                    initPokemon();
                     return;
                 }
             }
@@ -54,8 +56,8 @@ function checkUpdate() {
         });
         
     }
-    if(enemyPkmnInit){
-        initPokemon();
+    else{
+
     }
 }
 
@@ -75,4 +77,4 @@ let checkPlayers = setInterval(() => {
         clearInterval(checkPlayers);
     });
 
-}, 1000);
+}, 200);

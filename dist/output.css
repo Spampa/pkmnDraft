@@ -617,6 +617,14 @@ h5{
   top: 55%;
 }
 
+.bottom-0 {
+  bottom: 0px;
+}
+
+.left-52 {
+  left: 13rem;
+}
+
 .z-30 {
   z-index: 30;
 }
@@ -625,12 +633,20 @@ h5{
   grid-column: span 2 / span 2;
 }
 
+.row-span-2 {
+  grid-row: span 2 / span 2;
+}
+
 .row-span-3 {
   grid-row: span 3 / span 3;
 }
 
 .row-span-5 {
   grid-row: span 5 / span 5;
+}
+
+.row-span-4 {
+  grid-row: span 4 / span 4;
 }
 
 .mx-2 {
@@ -644,10 +660,6 @@ h5{
 
 .mt-3 {
   margin-top: 0.75rem;
-}
-
-.mr-3 {
-  margin-right: 0.75rem;
 }
 
 .flex {
@@ -698,8 +710,16 @@ h5{
   height: 100vh;
 }
 
-.h-5 {
-  height: 1.25rem;
+.h-\[100px\] {
+  height: 100px;
+}
+
+.h-\[50px\] {
+  height: 50px;
+}
+
+.h-\[45px\] {
+  height: 45px;
 }
 
 .min-h-screen {
@@ -726,6 +746,10 @@ h5{
   width: 24rem;
 }
 
+.w-\[40\%\] {
+  width: 40%;
+}
+
 .w-\[70\%\] {
   width: 70%;
 }
@@ -738,16 +762,28 @@ h5{
   width: 100vw;
 }
 
-.w-5 {
-  width: 1.25rem;
-}
-
 .w-\[50\%\] {
   width: 50%;
 }
 
-.w-\[40\%\] {
-  width: 40%;
+.w-\[200px\] {
+  width: 200px;
+}
+
+.w-\[50px\] {
+  width: 50px;
+}
+
+.w-\[100px\] {
+  width: 100px;
+}
+
+.w-\[30\%\] {
+  width: 30%;
+}
+
+.w-\[45px\] {
+  width: 45px;
 }
 
 .translate-y-1 {
@@ -793,8 +829,16 @@ h5{
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .grid-rows-4 {
   grid-template-rows: repeat(4, minmax(0, 1fr));
+}
+
+.grid-rows-3 {
+  grid-template-rows: repeat(3, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -809,8 +853,32 @@ h5{
   place-content: center;
 }
 
+.place-content-start {
+  place-content: start;
+}
+
+.place-content-end {
+  place-content: end;
+}
+
+.place-content-between {
+  place-content: space-between;
+}
+
+.place-content-baseline {
+  place-content: baseline;
+}
+
 .place-items-center {
   place-items: center;
+}
+
+.content-center {
+  align-content: center;
+}
+
+.content-baseline {
+  align-content: baseline;
 }
 
 .items-stretch {
@@ -843,6 +911,15 @@ h5{
 
 .rounded-sm {
   border-radius: 0.125rem;
+}
+
+.border-4 {
+  border-width: 4px;
+}
+
+.border-maize {
+  --tw-border-opacity: 1;
+  border-color: rgb(231 226 71 / var(--tw-border-opacity));
 }
 
 .bg-black {
@@ -889,6 +966,10 @@ h5{
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-\[rgba\(0\2c 0\2c 0\2c 0\.5\)\] {
+  background-color: rgba(0,0,0,0.5);
+}
+
 .bg-cover {
   background-size: cover;
 }
@@ -924,6 +1005,14 @@ h5{
 
 .p-5 {
   padding: 1.25rem;
+}
+
+.p-10 {
+  padding: 2.5rem;
+}
+
+.p-7 {
+  padding: 1.75rem;
 }
 
 .px-20 {
@@ -969,6 +1058,18 @@ h5{
 
 .pt-5 {
   padding-top: 1.25rem;
+}
+
+.pl-10 {
+  padding-left: 2.5rem;
+}
+
+.pr-10 {
+  padding-right: 2.5rem;
+}
+
+.pr-20 {
+  padding-right: 5rem;
 }
 
 .text-left {
@@ -1021,14 +1122,6 @@ h5{
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.opacity-25 {
-  opacity: 0.25;
-}
-
-.opacity-75 {
-  opacity: 0.75;
 }
 
 .transition-colors {
@@ -1105,6 +1198,10 @@ h5{
     top: 30%;
   }
 
+  .md\:row-span-2 {
+    grid-row: span 2 / span 2;
+  }
+
   .md\:ml-0 {
     margin-left: 0px;
   }
@@ -1121,12 +1218,36 @@ h5{
     display: none;
   }
 
+  .md\:h-\[50px\] {
+    height: 50px;
+  }
+
+  .md\:h-\[70px\] {
+    height: 70px;
+  }
+
   .md\:w-52 {
     width: 13rem;
   }
 
   .md\:w-80 {
     width: 20rem;
+  }
+
+  .md\:w-\[50px\] {
+    width: 50px;
+  }
+
+  .md\:w-\[70px\] {
+    width: 70px;
+  }
+
+  .md\:w-\[35\%\] {
+    width: 35%;
+  }
+
+  .md\:w-\[25\%\] {
+    width: 25%;
   }
 
   .md\:p-3 {
@@ -1145,6 +1266,10 @@ h5{
 
   .xl\:row-span-6 {
     grid-row: span 6 / span 6;
+  }
+
+  .xl\:row-span-2 {
+    grid-row: span 2 / span 2;
   }
 
   .xl\:ml-52 {
@@ -1167,6 +1292,10 @@ h5{
     height: 100%;
   }
 
+  .xl\:h-\[100px\] {
+    height: 100px;
+  }
+
   .xl\:w-52 {
     width: 13rem;
   }
@@ -1175,8 +1304,28 @@ h5{
     width: 24rem;
   }
 
+  .xl\:w-\[50\%\] {
+    width: 50%;
+  }
+
+  .xl\:w-\[45\%\] {
+    width: 45%;
+  }
+
+  .xl\:w-\[100px\] {
+    width: 100px;
+  }
+
   .xl\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .xl\:grid-rows-6 {
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+  }
+
+  .xl\:grid-rows-4 {
+    grid-template-rows: repeat(4, minmax(0, 1fr));
   }
 
   .xl\:p-10 {
