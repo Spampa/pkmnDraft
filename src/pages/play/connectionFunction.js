@@ -1,7 +1,8 @@
 let credentials = btoa('4ID:Grena');
 let auth = {'Authorization': 'Basic ' + credentials};
 export let playerIndex;
-let matchData;
+export let enemyIndex
+export let matchData;
 
 const createMatch = async () => {
     let data = await fetch(`https://classe5ID.altervista.org/games/partita/${'pkmn_'+localStorage.getItem('user_id')}`,{
@@ -9,6 +10,7 @@ const createMatch = async () => {
         headers: auth,
     });
     playerIndex = 0;
+    enemyIndex = 1;
     data = await data.json();
     return data;
 }
@@ -29,6 +31,7 @@ const joinGame = async (id) => {
         headers: auth,
     });
     playerIndex = 1;
+    enemyIndex = 0;
     data = await data.json();
     return data;
 }
@@ -61,7 +64,7 @@ export const getMatchMove = async () => {
 }
 
 
-export function searchMatch(){
+export const searchMatch = async () => {
     matchList().then(response => {
         for(let i = 0; i < response.data.length; i++){
             if(response.data[i].PLAYER1.substring(0,5) == 'pkmn_'){
@@ -76,9 +79,16 @@ export function searchMatch(){
         }
         createMatch().then(response => {
             matchData = response;
+            matchList().then(response => {
+                for(let i = 0; i < response.data.length; i++){
+                    if(response.data[i]?.ID != undefined){
+                        if(response.data[i].ID == matchData.data.id){
+                            matchData = response.data[i];
+                        }
+                    }
+                }
+            });
             console.log("Match created");
-            console.log(matchData);
-            console.log(matchData.data.id);
             
         });
     });

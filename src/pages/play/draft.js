@@ -1,4 +1,4 @@
-import { matchList, searchMatch, insertMove, playerIndex, getLastMove } from "./connectionFunction.js";
+import { matchList, searchMatch, insertMove, playerIndex, getLastMove, enemyIndex } from "./connectionFunction.js";
 
 const pkmn = [
   "003",
@@ -11,21 +11,22 @@ const pkmn = [
   "149",
 ];
 
-export const playerPkmn = [];
-export const enemyPkmn = [];
+export let playerPkmn = [];
+export let enemyPkmn = [];
 const draftPkmn = [];
 
 const imgPath = "../../assets/IMG/sprites/pokemon/";
 
 const playBtn = document.getElementById("playBtn");
-const draft = document.getElementById("draft");
+export const draft = document.getElementById("draft");
 const preGame = document.getElementById('preGame');
 const game = document.getElementById('game');
+export const loadingScreen = document.getElementById('loadingScreen');
 let pickCounter = 0;
 
 
 
-function randomizeDraft() {
+export function randomizeDraft() {
   if (pickCounter == 2) {
     preGame.classList.add('hidden');
     game.classList.remove('hidden');
@@ -37,7 +38,7 @@ function randomizeDraft() {
   draft.children[1].children[0].src = imgPath + draftPkmn[pickCounter * 2 + 1] + ".gif";
 }
 
-function generateDraftPkmn() {
+export function generateDraftPkmn() {
   for (let i = 0; i < 4; i++) {
     let randomPkmn = pkmn[Math.floor(Math.random() * pkmn.length)];
     if (draftPkmn.includes(randomPkmn)) {
@@ -68,8 +69,10 @@ function initPokemon() {
   const pkmn1 = document.getElementById('pkmn1');
   const pkmn2 = document.getElementById('pkmn2');
 
+  /*
   console.log(playerPkmn);
   console.log(enemyPkmn);
+  */
 
   pkmn1.src = imgPath + playerPkmn[0] + ".gif";
   for (let i = 1; i <= 4; i++) {
@@ -80,16 +83,16 @@ function initPokemon() {
       });
   }
 
-  insertMove(playerIndex + 'eP' + enemyPkmn[0] + ',' + enemyPkmn[1]).then(response => {
+  insertMove(playerIndex + 'pP' + enemyPkmn[0] + ',' + enemyPkmn[1]).then( () => {
     getLastMove();
   });
 }
 
+
+
 playBtn.addEventListener("click", function () {
+  loadingScreen.classList.remove('hidden');
+  loadingScreen.classList.add('grid');
   searchMatch();
   document.getElementById('playContainer').classList.add('hidden');
-  draft.classList.remove('hidden');
-  draft.classList.add('flex');
-  generateDraftPkmn();
-  randomizeDraft();
 });

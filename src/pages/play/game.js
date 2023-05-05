@@ -1,57 +1,60 @@
-import { getLastMove, getMatchMove, insertMove, playerIndex } from "./connectionFunction.js";
-import { playerPkmn, enemyPkmn } from "./draft.js";
+import { getLastMove, getMatchMove, insertMove, playerIndex, enemyIndex, matchData, matchList } from "./connectionFunction.js";
+import { playerPkmn, enemyPkmn, generateDraftPkmn, randomizeDraft, loadingScreen } from "./draft.js";
 
 
 setInterval(checkUpdate, 1000);
 let pkmnInit = false;
-
-let enemyIndex;
+let enemyPkmnInit = false;
 let move;
 
-function checkUpdate(){
-    if(!pkmnInit){
-        if(playerIndex == 0){
-            enemyIndex = 1;
-        }
-        else{
-            enemyIndex = 0;
-        }
+function checkUpdate() {
+    if (!pkmnInit) {
 
         getMatchMove().then(response => {
-            for(let i = 0; i < response.data.moves.length; i++){
-                move = JSON.stringify(response.data.moves[i].MOSSA);
-                if(move.substring(1, 2) == enemyIndex){
-                    console.log(move);
-                    let mossa = move.substring(4, move.length - 1);
+            for(let i = 0; i < response.data.moves.length; i++) {
+                let mossa = JSON.stringify(response.data.moves[i].MOSSA);
+                let moveType = mossa.substring(1, 4);
+                if(moveType == enemyIndex + 'pP'){
+                    mossa = mossa.substring(4, mossa.length - 1);
                     playerPkmn.push(mossa.substring(0, mossa.indexOf(',')));
                     mossa = mossa.substring(mossa.indexOf(',') + 1, mossa.length);
                     playerPkmn.push(mossa);
-                    console.log(playerPkmn);
                     pkmnInit = true;
-                    insertMove(playerIndex + 'aP' + playerPkmn[0] + ',' + playerPkmn[1] + ',' + playerPkmn[2] + ',' + playerPkmn[3]);
+                    insertMove(playerIndex + 'eP' + playerPkmn[0] + ',' + playerPkmn[1]);
                     return;
                 }
             }
+        }).catch(error => {
         });
     }
-
-    getLastMove().then(response => {
-        if(response != undefined){
-            let mossa = JSON.stringify(response.data.play.MOSSA);
-            let moveType = mossa.substring(1, 4);
-            mossa = mossa.substring(4, mossa.length - 1);
-            console.log(moveType);
-            if(moveType == enemyIndex+"aP"){
-                enemyPkmn = [];
-                mossa = mossa.substring(0, mossa.length - 1);
-                for(let i = 0; i < 4; i++){
-                    enemyPkmn.push(mossa.substring(0, mossa.indexOf(',')));
+    else if(!enemyPkmnInit) {
+        getMatchMove().then(response => {
+            for(let i = 0; i < response.data.moves.length; i++) {
+                let mossa = JSON.stringify(response.data.moves[i].MOSSA);
+                let moveType = mossa.substring(1, 4);
+                if(moveType == enemyIndex + 'eP'){
+                    mossa = mossa.substring(4, mossa.length - 1);
+                    enemyPkmn.unshift(mossa.substring(0, mossa.indexOf(',')));
                     mossa = mossa.substring(mossa.indexOf(',') + 1, mossa.length);
+                    enemyPkmn.unshift(mossa);
+                    let temp = enemyPkmn[0];
+                    enemyPkmn[0] = enemyPkmn[1];
+                    enemyPkmn[1] = temp;
+                    console.log('player: ' + playerPkmn);
+                    console.log('enemy: ' + enemyPkmn);
+                    enemyPkmnInit = true;
+                    return;
                 }
-                console.log(enemyPkmn);
             }
-        }
-    });
+    
+        }).catch(error => {
+    
+        });
+        
+    }
+
+    
+
 
 
     /*
@@ -69,3 +72,21 @@ function checkUpdate(){
     });
     */
 }
+
+setInterval(() => {
+    if(matchData?.ID == undefined) return;
+    matchList().then(response => {
+        for(let i = 0; i < response.data.length; i++){
+            if(matchData.ID == response.data[i].ID){
+                console.log('Nessuno si è unito alla partita');
+                return;
+            }            
+        }
+        console.log('Qualcuno si è unito alla partita');
+        loadingScreen.classList.add('hidden');
+        generateDraftPkmn();
+        randomizeDraft();
+
+    });
+    
+}, 1000);
