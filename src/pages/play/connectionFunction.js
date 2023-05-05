@@ -72,7 +72,6 @@ export const getMatchMove = async () => {
     if(id == undefined){
         id = matchData.ID;
     }
-    console.log(id);
     let data = await fetch(`https://classe5ID.altervista.org/games/mosse/${id}`, {
         method: 'GET',
         headers: auth,

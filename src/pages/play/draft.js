@@ -30,7 +30,6 @@ export function randomizeDraft() {
   if (pickCounter == 2) {
     preGame.classList.add('hidden');
     game.classList.remove('hidden');
-    initPokemon();
     return;
   }
 
@@ -65,7 +64,8 @@ draft.children[1].addEventListener('click', () => {
 });
 
 const moves = document.getElementById('moves');
-function initPokemon() {
+export function initPokemon() {
+  console.log('initPokemon');
   const pkmn1 = document.getElementById('pkmn1');
   const pkmn2 = document.getElementById('pkmn2');
 

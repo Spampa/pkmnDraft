@@ -1,8 +1,8 @@
 import { getLastMove, getMatchMove, insertMove, playerIndex, enemyIndex, matchData, matchList } from "./connectionFunction.js";
-import { playerPkmn, enemyPkmn, loadingScreen, draft, generateDraftPkmn, randomizeDraft } from "./draft.js";
+import { playerPkmn, enemyPkmn, loadingScreen, draft, initPokemon } from "./draft.js";
 
 
-setInterval(checkUpdate, 1000);
+setInterval(checkUpdate, 200);
 let pkmnInit = false;
 let enemyPkmnInit = false;
 let move;
@@ -10,6 +10,7 @@ let move;
 function checkUpdate() {
     if (!pkmnInit) {
         getMatchMove().then(response => {
+            console.log(response);
             for(let i = 0; i < response.data.moves.length; i++) {
                 let mossa = JSON.stringify(response.data.moves[i].MOSSA);
                 let moveType = mossa.substring(1, 4);
@@ -20,7 +21,7 @@ function checkUpdate() {
                     playerPkmn.push(mossa);
                     pkmnInit = true;
                     insertMove(playerIndex + 'eP' + playerPkmn[0] + ',' + playerPkmn[1]);
-                    console.log('player: ' + playerPkmn);
+                    console.log(playerPkmn);
                     return;
                 }
             }
@@ -28,7 +29,9 @@ function checkUpdate() {
         });
     }
     else if(!enemyPkmnInit) {
+        console.log(enemyPkmnInit);
         getMatchMove().then(response => {
+            
             for(let i = 0; i < response.data.moves.length; i++) {
                 let mossa = JSON.stringify(response.data.moves[i].MOSSA);
                 let moveType = mossa.substring(1, 4);
@@ -40,9 +43,8 @@ function checkUpdate() {
                     let temp = enemyPkmn[0];
                     enemyPkmn[0] = enemyPkmn[1];
                     enemyPkmn[1] = temp;
-                    console.log('player: ' + playerPkmn);
-                    console.log('enemy: ' + enemyPkmn);
-                    enemyPkmnInit = true;
+                    console.log(playerPkmn);
+                    console.log(enemyPkmn);
                     return;
                 }
             }
@@ -51,6 +53,9 @@ function checkUpdate() {
     
         });
         
+    }
+    if(enemyPkmnInit){
+        initPokemon();
     }
 }
 
