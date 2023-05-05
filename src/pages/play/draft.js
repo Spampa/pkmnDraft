@@ -1,4 +1,4 @@
-import { matchList, searchMatch, insertMove, playerIndex } from "./connectionFunction.js";
+import { matchList, searchMatch, insertMove, playerIndex, getLastMove } from "./connectionFunction.js";
 
 const pkmn = [
   "003",
@@ -11,8 +11,8 @@ const pkmn = [
   "149",
 ];
 
-const playerPkmn = [];
-const enemyPkmn = [];
+export const playerPkmn = [];
+export const enemyPkmn = [];
 const draftPkmn = [];
 
 const imgPath = "../../assets/IMG/sprites/pokemon/";
@@ -80,8 +80,8 @@ function initPokemon() {
       });
   }
 
-  insertMove(playerIndex + 'ePkmn_' + JSON.stringify(enemyPkmn)).then(response => {
-    console.log(response);
+  insertMove(playerIndex + 'eP' + enemyPkmn[0] + ',' + enemyPkmn[1]).then(response => {
+    getLastMove();
   });
 }
 
@@ -92,7 +92,4 @@ playBtn.addEventListener("click", function () {
   draft.classList.add('flex');
   generateDraftPkmn();
   randomizeDraft();
-  matchList().then(response => {
-    console.log(response);
-  });
 });

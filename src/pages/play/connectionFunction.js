@@ -8,6 +8,7 @@ const createMatch = async () => {
         method: 'POST',
         headers: auth,
     });
+    playerIndex = 0;
     data = await data.json();
     return data;
 }
@@ -27,13 +28,32 @@ const joinGame = async (id) => {
         method: 'POST',
         headers: auth,
     });
+    playerIndex = 1;
     data = await data.json();
     return data;
 }
 
 export const insertMove = async (move) => {
-    let data = await fetch(`https://classe5ID.altervista.org/games/join/${matchData.data.id}/${'pkmn_'+localStorage.getItem('user_id')}/${move}`, {
+    let data = await fetch(`https://classe5ID.altervista.org/games/mossa/${matchData.data.id}/${'pkmn_'+localStorage.getItem('user_id')}/${move}`, {
         method: 'POST',
+        headers: auth,
+    });
+    data = await data.json();
+    return data;
+}
+
+export const getLastMove = async () => {
+    let data = await fetch(`https://classe5ID.altervista.org/games/mossa/${matchData.data.id}`, {
+        method: 'GET',
+        headers: auth,
+    });
+    data = await data.json();
+    return data;
+}
+
+export const getMatchMove = async () => {
+    let data = await fetch(`https://classe5ID.altervista.org/games/mosse/${matchData.data.id}`, {
+        method: 'GET',
         headers: auth,
     });
     data = await data.json();
@@ -50,13 +70,11 @@ export function searchMatch(){
                         matchData = response;
                     });
                     console.log("Match joined");
-                    playerIndex = 1;
                     return 0;
                 }
             }
         }
         createMatch().then(response => {
-            playerIndex = 0;
             matchData = response;
             console.log("Match created");
             console.log(matchData);
