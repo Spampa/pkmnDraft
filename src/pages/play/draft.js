@@ -89,6 +89,7 @@ playBtn.addEventListener("click", function () {
   searchMatch();
   document.getElementById('playContainer').classList.add('hidden');
   draft.classList.remove('hidden');
+  draft.classList.add('flex');
   generateDraftPkmn();
   randomizeDraft();
   matchList().then(response => {
