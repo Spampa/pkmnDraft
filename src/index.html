@@ -43,9 +43,12 @@
         </div>
       </a>
     </div>
-    <div class="container p-5 md:p-3">
-      <a href="./pages/login/login.html">ACCEDI</a>
+    <div class="container p-5 md:p-3 ">
+      <h3 id="textUsername" class="mb-2"></h3>
+      <a href="./pages/login/login.html" id="loginBtn">ACCEDI</a>
+      <button class="hidden" onclick="logout()" id="logoutBtn">ESCI</button>
     </div>
+    
   </div>
 
   <div class="md:ml-52 p-3 md:pt-10 xl:grid xl:grid-cols-4 bg-true-blue min-h-screen text-white">
@@ -66,7 +69,7 @@
       <!-- Profile -->
       <div class="container hidden md:block">
         <div class="flex flex-row">
-          <img class="h-10 rounded-sm" src="./assets/IMG/userIcon.jpg" alt="User icon">
+          <img class="h-10 rounded-sm hidden" src="./assets/IMG/userIcon.jpg" alt="User icon" id="userIcon">
           <h3 class="font-bold mx-2" id="textUsername"></h3>
         </div>
       </div>
@@ -99,23 +102,8 @@
     </div>
     <div></div>
   </div>
-  <script>
-    let burger = document.getElementById('burger');
-    let header = document.getElementById('header');
-    let inMenuBurger = document.getElementById('inMenuBurger')
-
-    burger.addEventListener('click', () => {
-      header.classList.remove('invisible');
-      inMenuBurger.classList.remove('hidden');
-    });
-
-    inMenuBurger.children[0].addEventListener('click', () => {
-      header.classList.add('invisible');
-      inMenuBurger.classList.add('hidden');
-      console.log("premuto");
-    });
-  </script>
-  <script type="module" src="../app.js"></script>
+  <script src="../header.js"></script>
+  <script type="module" src="../getData.js"></script>
+  <script src="../app.js"></script>
 </body>
-
 </html>

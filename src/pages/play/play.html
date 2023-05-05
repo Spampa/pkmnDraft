@@ -45,7 +45,9 @@
       </a>
     </div>
     <div class="container p-5 md:p-3">
-      <a href="../login/login.html">ACCEDI</a>
+      <h3 id="textUsername" class="mb-2"></h3>
+      <a href="./pages/login/login.html" id="loginBtn">ACCEDI</a>
+      <button class="hidden" id="logoutBtn">ESCI</button>
     </div>
   </div>
 
@@ -76,12 +78,12 @@
         <!-- Draft -->
         <div class="flex items-stretch w-full hidden" id="draft">
 
-          <div class="container rounded grid place-content-center transition-colors hover:bg-maize" id="draftPkmn1">
-            <img class="w-96" src="../../assets/IMG/sprites/pokemon/006.gif" alt="pokemon 1">
+          <div class="container rounded grid place-content-center transition-colors hover:bg-maize">
+            <img class="w-96" src="../../assets/IMG/sprites/pokemon/006.gif">
           </div>
 
-          <div class="container rounded grid place-content-center transition-colors hover:bg-maize" id="draftPkmn2">
-            <img class="w-96" src="../../assets/IMG/sprites/pokemon/009.gif" alt="pokemon 2">
+          <div class="container rounded grid place-content-center transition-colors hover:bg-maize">
+            <img class="w-96" src="../../assets/IMG/sprites/pokemon/009.gif">
           </div>
         </div>
 
@@ -100,23 +102,30 @@
             <div class="container">
               <img
                 class="w-60 sm:w-56 md:w-80 xl:w-96 relative left-[-10%] top-[18%] sm:left-[20%] sm:top-[30%] md:left-[17%] md:top-[20%]"
-                src="../../assets/IMG/sprites/pokemon/009.gif" alt="pokemon 2" id="pkmn2">
+                src="../../assets/IMG/sprites/pokemon/009.gif" alt="pokemon 2" id="pkmn1">
             </div>
           </div>
         </div>
 
-        <div class="grid grid-cols-2 items-stretch gap-4 p-5 h-[25%]">
-          <button class="bg-ochre text-2xl font-bold text-left pl-5 rounded-sm">Mossa 1</button>
-          <button class="bg-ochre text-2xl font-bold text-left pl-5 rounded-sm">Mossa 2</button>
-          <button class="bg-ochre text-2xl font-bold text-left pl-5 rounded-sm">Mossa 3</button>
-          <button class="bg-ochre text-2xl font-bold text-left pl-5 rounded-sm">Mossa 4</button>
+        <div class="grid grid-cols-2 items-stretch gap-4 p-5 h-[25%]" id="moves">
+          <button class="transition-colors bg-ochre hover:bg-light-maize text-2xl font-bold text-left pl-5 rounded-sm">Mossa 1</button>
+          <button class="transition-colors bg-ochre hover:bg-light-maize text-2xl font-bold text-left pl-5 rounded-sm">Mossa 2</button>
+          <button class="transition-colors bg-ochre hover:bg-light-maize text-2xl font-bold text-left pl-5 rounded-sm">Mossa 3</button>
+          <button class="transition-colors bg-ochre hover:bg-light-maize text-2xl font-bold text-left pl-5 rounded-sm">Mossa 4</button>
         </div>
 
       </div>
     </div>
   </div>
 
+  <script type="module" src="./connectionFunction.js"></script>
+  <script type="module" src="./draft.js"></script>
   <script src="./game.js"></script>
+
+  <!-- Other -->
+  <script src="../../../header.js"></script>
+  <script type="module" src="../../../getData.js"></script>
+  <script src="../../../app.js"></script>
 </body>
 
 </html>

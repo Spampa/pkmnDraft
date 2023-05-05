@@ -27,6 +27,7 @@ register.addEventListener("click", () => {
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
+      localStorage.setItem('user_id', user.uid);
       writeUserData(user.uid, username, mail);
     })
     .catch((error) => {
@@ -46,8 +47,8 @@ register.addEventListener("click", () => {
 });
 
 function writeUserData(userId, username, email){
-  id = userId;
   const db = getDatabase();
+  console.log(userId);
   set(ref(db, 'users/' + userId), {
     username : username,
     email : email,
