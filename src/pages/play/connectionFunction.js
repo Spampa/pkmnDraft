@@ -32,7 +32,7 @@ const joinGame = async (id) => {
 }
 
 export const insertMove = async (move) => {
-    let data = await fetch(`https://classe5ID.altervista.org/games/join/${matchData.data.id}/${'pkmn_'}/${move}`, {
+    let data = await fetch(`https://classe5ID.altervista.org/games/join/${matchData.data.id}/${'pkmn_'+localStorage.getItem('user_id')}/${move}`, {
         method: 'POST',
         headers: auth,
     });
