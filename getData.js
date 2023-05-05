@@ -13,14 +13,19 @@ const firebaseConfig = {
 };
 initializeApp(firebaseConfig);
 
-const textUsername = document.getElementById('textUsername');
+// class textUsername
+const textUsername = document.getElementsByClassName("textUsername");
+
 const db = getDatabase();
 const ID = localStorage.getItem('user_id');
 
 const starCountRef = ref(db, 'users/' + ID);
 onValue(starCountRef, (snapshot) => {
   const data = snapshot.val();
-  textUsername.innerHTML = data.username;
+  for(let i = 0; i < textUsername.length; i++){
+    textUsername[i].innerHTML = data.username;
+  }
+  localStorage.setItem('username', data.username);
 });
 
 if(ID != null){
@@ -32,6 +37,5 @@ if(ID != null){
   if(userIcon != null){
     userIcon.classList.remove("hidden");
   }
-
 }
 
