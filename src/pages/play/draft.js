@@ -1,4 +1,5 @@
 import { matchList, searchMatch, insertMove, playerIndex, getLastMove, enemyIndex } from "./connectionFunction.js";
+import { draftPkmn } from "./game.js";
 
 const pkmn = [
   "003",
@@ -10,7 +11,6 @@ const pkmn = [
   "034",
   "036",
   "051",
-  "053",
   "065",
   "068",
   "149",
@@ -18,7 +18,6 @@ const pkmn = [
 
 export let playerPkmn = [];
 export let enemyPkmn = [];
-const draftPkmn = [];
 
 const imgPath = "../../assets/IMG/sprites/pokemon/";
 
@@ -33,12 +32,13 @@ let pickCounter = 0;
 
 
 
-export function randomizeDraft() {
+export async function addToDraft() {
   if (pickCounter == 2) {
-
     draft.classList.add('hidden');
     loadingScreen.classList.remove('hidden');
     loadingScreen.children[1].innerHTML = 'In attesa del tuo avversario';
+    console.log('Player Pkmn: ' + playerPkmn);
+    console.log('Enemy Pkmn: ' + enemyPkmn);
     insertMove(playerIndex + 'pP' + enemyPkmn[0] + ',' + enemyPkmn[1]).then( () => {
       getLastMove();
     });
@@ -47,10 +47,15 @@ export function randomizeDraft() {
 
   draft.children[0].children[0].src = imgPath + draftPkmn[pickCounter * 2] + ".gif";
   draft.children[1].children[0].src = imgPath + draftPkmn[pickCounter * 2 + 1] + ".gif";
+  if(pickCounter == 0){
+    loadingScreen.classList.add('hidden');
+    draft.classList.remove('hidden');
+    draft.classList.add('flex');
+  }
 }
 
-export function generateDraftPkmn() {
-  for (let i = 0; i < 4; i++) {
+export function generatePkmn() {
+  for (let i = 0; i < 8; i++) {
     let randomPkmn = pkmn[Math.floor(Math.random() * pkmn.length)];
     if (draftPkmn.includes(randomPkmn)) {
       i--;
@@ -65,14 +70,14 @@ draft.children[0].addEventListener('click', () => {
   playerPkmn.push(draftPkmn[pickCounter * 2]);
   enemyPkmn.push(draftPkmn[pickCounter * 2 + 1]);
   pickCounter++;
-  randomizeDraft();
+  addToDraft();
 });
 
 draft.children[1].addEventListener('click', () => {
   playerPkmn.push(draftPkmn[pickCounter * 2 + 1]);
   enemyPkmn.push(draftPkmn[pickCounter * 2]);
   pickCounter++;
-  randomizeDraft();
+  addToDraft();
 });
 
 const moves = document.getElementById('moves');
@@ -118,6 +123,4 @@ playBtn.addEventListener("click", function () {
   document.getElementById('playContainer').classList.add('hidden');
   loadingScreen.classList.remove('hidden');
   loadingScreen.classList.add('grid');
-  generateDraftPkmn();
-  randomizeDraft();
 });

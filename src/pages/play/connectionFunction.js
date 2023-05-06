@@ -1,4 +1,4 @@
-import { loadingScreen, draft } from "./draft.js";
+import { loadingScreen, draft, generatePkmn } from "./draft.js";
 
 let credentials = btoa('4ID:Grena');
 let auth = {'Authorization': 'Basic ' + credentials};
@@ -14,6 +14,7 @@ const createMatch = async () => {
     playerIndex = 0;
     enemyIndex = 1;
     data = await data.json();
+    generatePkmn();
     return data;
 }
 
@@ -33,9 +34,6 @@ const joinGame = async (id) => {
     });
     playerIndex = 1;
     enemyIndex = 0;
-    loadingScreen.classList.add('hidden');
-    draft.classList.remove('hidden');
-    draft.classList.add('flex');
     console.log('Partita iniziata');
     data = await data.json();
     return data;
@@ -57,8 +55,9 @@ export const insertMove = async (move) => {
 export const getLastMove = async () => {
     let id = matchData?.data?.id;
     if(id == undefined){
-        id = matchData.ID;
+        id = matchData?.ID;
     }
+    if(id == undefined) return;
     let data = await fetch(`https://classe5ID.altervista.org/games/mossa/${id}`, {
         method: 'GET',
         headers: auth,
@@ -97,6 +96,7 @@ export const searchMatch = async () => {
         createMatch().then(response => {
             matchData = response;
             matchList().then(response => {
+                if(response?.data == undefined) return;
                 for(let i = 0; i < response.data.length; i++){
                     if(response.data[i]?.ID != undefined){
                         if(response.data[i].ID == matchData.data.id){
