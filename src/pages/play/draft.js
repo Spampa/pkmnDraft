@@ -11,6 +11,8 @@ for(let i = 0; i < pkmnData.length; i++){
 export let playerPkmn = [];
 export let enemyPkmn = [];
 export let draftEnd = false;
+let actualMoveSet = [];
+
 
 const playBtn = document.getElementById("playBtn");
 export const draft = document.getElementById("draft");
@@ -18,6 +20,7 @@ const preGame = document.getElementById('preGame');
 const game = document.getElementById('game');
 export const loadingScreen = document.getElementById('loadingScreen');
 const otherPkmn = document.getElementsByClassName('otherPkmn');
+const moves = document.getElementById('moves');
 
 let pickCounter = 0;
 
@@ -70,7 +73,7 @@ draft.children[1].addEventListener('click', () => {
   addToDraft();
 });
 
-const moves = document.getElementById('moves');
+
 export function initPokemon() {
   const pkmn1 = document.getElementById('pkmn1');
   const pkmn2 = document.getElementById('pkmn2');
@@ -94,19 +97,34 @@ export function initPokemon() {
 
     }
   }
-  preGame.classList.add('hidden');
-  game.classList.remove('hidden');
-  game.classList.add('grid');
 
+  //save all data of pokemon in playerPkmn
+  let temp = [];
+  for(let j = 0; j < playerPkmn.length; j++){
+    for(let i = 0; i < pkmnData.length; i++){
+      if(pkmnData[i].id == playerPkmn[j]){
+        temp.push(pkmnData[i]);
+      }
+    }
+  }
+  playerPkmn = temp;
 
-  /*
-  for (let i = 1; i <= 4; i++) {
-    fetch('https://pokeapi.co/api/v2/move/' + i)
-      .then(response => response.json())
-      .then(data => {
-        moves.children[i - 1].innerHTML = data.name;
-      });
-  }*/
+  initMoves().then( () => {
+    preGame.classList.add('hidden');
+    game.classList.remove('hidden');
+    game.classList.add('grid');
+  });
+}
+
+async function initMoves(){
+  for(let i = 0; i < 4; i++){
+    fetch('https://pokeapi.co/api/v2/move/' + playerPkmn[0].move[i].id).then
+    (response => response.json()).then(data => {
+      setMoveColor(moves.children[i], data.type.name);
+      actualMoveSet.push(data);
+      moves.children[i].innerHTML = playerPkmn[0].move[i].name;
+    });
+  }
 }
 
 
@@ -117,3 +135,69 @@ playBtn.addEventListener("click", function () {
   loadingScreen.classList.remove('hidden');
   loadingScreen.classList.add('grid');
 });
+
+function setMoveColor(move, type){
+  //change background color of move
+  switch(type){
+    case 'normal':
+      move.style.backgroundColor = '#A8A77A';
+      break;
+    case 'fire':
+      move.style.backgroundColor = '#EE8130';
+      break;
+    case 'water':
+      move.style.backgroundColor = '#6390F0';
+      break;
+    case 'electric':
+      move.style.backgroundColor = '#F7D02C';
+      break;
+    case 'grass':
+      move.style.backgroundColor = '#7AC74C';
+      break;
+    case 'ice':
+      move.style.backgroundColor = '#96D9D6';
+      break;
+    case 'fighting':
+      move.style.backgroundColor = '#C22E28';
+      break;
+    case 'poison':
+      move.style.backgroundColor = '#A33EA1';
+      move.classList.add('text-white')
+      break;
+    case 'ground':
+      move.style.backgroundColor = '#E2BF65';
+      break;
+    case 'flying':
+      move.style.backgroundColor = '#A98FF3';
+      break;
+    case 'psychic':
+      move.style.backgroundColor = '#F95587';
+      move.classList.add('text-white')
+      break;
+    case 'bug':
+      move.style.backgroundColor = '#A6B91A';
+      break;
+    case 'rock':
+      move.style.backgroundColor = '#B6A136';
+      move.classList.add('text-white')
+      break;
+    case 'ghost':
+      move.style.backgroundColor = '#735797';
+      move.classList.add('text-white')
+      break;
+    case 'dragon':
+      move.style.backgroundColor = '#6F35FC';
+      move.classList.add('text-white')
+      break;
+    case 'dark':
+      move.style.backgroundColor = '#705746';
+      move.classList.add('text-white')
+      break;
+    case 'steel':
+      move.style.backgroundColor = '#B7B7CE';
+      break;
+    case 'fairy':
+      move.style.backgroundColor = '#D685AD';
+      break;
+  }
+}
