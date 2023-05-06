@@ -97,6 +97,8 @@ export const searchMatch = async () => {
             matchData = response;
             matchList().then(response => {
                 if(response?.data == undefined) return;
+                if(matchData?.data == undefined) return;
+                
                 for(let i = 0; i < response.data.length; i++){
                     if(response.data[i]?.ID != undefined){
                         if(response.data[i].ID == matchData.data.id){
@@ -104,6 +106,8 @@ export const searchMatch = async () => {
                         }
                     }
                 }
+            }).catch(error => {
+                console.log(error);
             });
             console.log("Match created");
         });

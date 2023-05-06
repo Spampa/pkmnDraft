@@ -1,25 +1,16 @@
 import { matchList, searchMatch, insertMove, playerIndex, getLastMove, enemyIndex } from "./connectionFunction.js";
 import { draftPkmn } from "./game.js";
+import { pkmnData } from "./pkmnData.js";
 
-const pkmn = [
-  "003",
-  "006",
-  "009",
-  "018",
-  "026",
-  "031",
-  "034",
-  "036",
-  "051",
-  "065",
-  "068",
-  "149",
-];
+const imgPath = "../../assets/IMG/sprites/pokemon/";
+const pkmn = [];
+for(let i = 0; i < pkmnData.length; i++){
+  pkmn.push(pkmnData[i].id);
+}
 
 export let playerPkmn = [];
 export let enemyPkmn = [];
-
-const imgPath = "../../assets/IMG/sprites/pokemon/";
+export let draftEnd = false;
 
 const playBtn = document.getElementById("playBtn");
 export const draft = document.getElementById("draft");
@@ -37,11 +28,10 @@ export async function addToDraft() {
     draft.classList.add('hidden');
     loadingScreen.classList.remove('hidden');
     loadingScreen.children[1].innerHTML = 'In attesa del tuo avversario';
-    console.log('Player Pkmn: ' + playerPkmn);
-    console.log('Enemy Pkmn: ' + enemyPkmn);
-    insertMove(playerIndex + 'pP' + enemyPkmn[0] + ',' + enemyPkmn[1]).then( () => {
+    insertMove(playerIndex + 'aP' + enemyPkmn[0] + ',' + enemyPkmn[1] + ',' + playerPkmn[0] + ',' + playerPkmn[1]).then( () => {
       getLastMove();
     });
+    draftEnd = true;
     return;
   }
 
@@ -85,14 +75,14 @@ export function initPokemon() {
   const pkmn1 = document.getElementById('pkmn1');
   const pkmn2 = document.getElementById('pkmn2');
 
+  /*
   console.log('Player Pkmn: ' + playerPkmn);
   console.log('Enemy Pkmn: ' + enemyPkmn);
-
+  */
 
   pkmn1.src = imgPath + playerPkmn[0] + ".gif";
   pkmn2.src = imgPath + enemyPkmn[0] + ".gif";
 
-  console.log(otherPkmn[1].children[0].children[0]);
   for(let j = 0; j < 2; j++){
     for (let i = 0; i < playerPkmn.length; i++) {
       if(j == 0){
@@ -104,6 +94,9 @@ export function initPokemon() {
 
     }
   }
+  preGame.classList.add('hidden');
+  game.classList.remove('hidden');
+  game.classList.add('grid');
 
 
   /*
