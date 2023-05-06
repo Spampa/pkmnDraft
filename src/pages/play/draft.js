@@ -8,6 +8,11 @@ const pkmn = [
   "026",
   "031",
   "034",
+  "036",
+  "051",
+  "053",
+  "065",
+  "068",
   "149",
 ];
 
@@ -75,8 +80,8 @@ export function initPokemon() {
   const pkmn1 = document.getElementById('pkmn1');
   const pkmn2 = document.getElementById('pkmn2');
 
-  console.log(playerPkmn);
-  console.log(enemyPkmn);
+  console.log('Player Pkmn: ' + playerPkmn);
+  console.log('Enemy Pkmn: ' + enemyPkmn);
 
 
   pkmn1.src = imgPath + playerPkmn[0] + ".gif";

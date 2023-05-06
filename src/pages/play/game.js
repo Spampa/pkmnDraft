@@ -21,8 +21,10 @@ function checkUpdate() {
                     mossa = mossa.substring(mossa.indexOf(',') + 1, mossa.length);
                     playerPkmn.push(mossa);
                     pkmnInit = true;
-                    insertMove(playerIndex + 'eP' + playerPkmn[0] + ',' + playerPkmn[1]);
-                    console.log(playerPkmn);
+                    insertMove(playerIndex + 'eP' + playerPkmn[0] + ',' + playerPkmn[1]).then( () => {
+                        console.log(response);
+                    });
+                    //console.log('Player Pkmn: ' + playerPkmn);
                     return;
                 }
             }
