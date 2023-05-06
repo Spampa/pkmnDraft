@@ -47,7 +47,7 @@
     </div>
     <div class="container p-5 md:p-3">
       <h3 class="mb-2 textUsername"></h3>
-      <a href="./pages/login/login.html" id="loginBtn">ACCEDI</a>
+      <a href="../login/login.html" id="loginBtn">ACCEDI</a>
       <button class="hidden" id="logoutBtn">ESCI</button>
     </div>
   </div>
@@ -69,12 +69,12 @@
     </div>
 
     <div class="h-[85%] xl:h-full p-2">
-      <div class="h-full grid place-items-center items-stretch bg-black  w-full rounded" id="preGame">
+      <div class="h-full grid place-items-center items-stretch bg-black  w-full rounded hidden" id="preGame">
 
         <!-- Loading -->
         <div class=" place-items-center hidden" id="loadingScreen">
           <img class="object-contain animate-spin w-[40%]" src="../../assets/IMG/sprites/other/pokeball.png" alt="">
-          <h1 class="text-white">In cerca di un avversario</h1>
+          <p class="text-white text-[25px] md:text-[40px] ">In cerca di un avversario</p>
         </div>
 
         <!-- Play Btn -->
@@ -98,39 +98,38 @@
       </div>
 
       <!-- Game -->
-      <div class="grid grid-rows-4 row-span-5 xl:row-span-6 bg-black h-full w-full rounded hidden" id="game">
+      <div class="grid grid-rows-4 row-span-5 xl:row-span-6 bg-black h-full w-full rounded  " id="game">
         <div style="background-image: url(../../assets/IMG/battleBG.png);"
           class="grid grid-cols-2 w-full row-span-3 bg-no-repeat bg-center bg-cover rounded">
           <div class="flex flex-col place-content-between">
             <!-- Other Pokemon -->
-            <div>
-              <div class="flex flex-row gap-3 p-5 h-full pr-20 otherPkmn">
+            <div class="relative flex">
+              <div class="grid grid-cols-2 md:flex md:flex-row gap-3 p-5 h-full otherPkmn">
                 <div
-                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[45px] h-[45px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
+                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[60px] h-[60px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
                   <img class="object-contain" src="../../assets/IMG/sprites/pokemon/018.gif" alt="">
                 </div>
                 <div
-                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[45px] h-[45px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
+                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[60px] h-[60px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
                   <img src="../../assets/IMG/sprites/pokemon/006.gif" alt="">
                 </div>
                 <div
-                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[45px] h-[45px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
+                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[60px] h-[60px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
                   <img src="../../assets/IMG/sprites/pokemon/009.gif" alt="">
                 </div>
                 <div
-                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[45px] h-[45px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
+                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[60px] h-[60px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
                   <img src="../../assets/IMG/sprites/pokemon/026.gif" alt="">
                 </div>
               </div>
-
             </div>
             <!-- Pokemon -->
             <div class="xl:row-span-2">
-              <img class="transform -scale-x-100 w-[40%] xl:w-[45%]" src="../../assets/IMG/sprites/pokemon/003.gif"
+              <img class="transform -scale-x-100 w-[150px] md:w-[45%] xl:w-[45%] md:ml-20 xl:ml-44" src="../../assets/IMG/sprites/pokemon/003.gif"
                 alt="pokemon 1" id="pkmn1">
             </div>
             <!-- Life Bar -->
-            <div class="p-3 pr-20">
+            <div class="p-3 md:pr-10 xl:pr-20">
               <h3 class="font-bold">HP 10/20</h3>
               <div class="bg-light-true-blue w-full p-2 rounded">
                 <div class="bg-maize w-full p-3 rounded">
@@ -142,9 +141,9 @@
 
           <div class="flex flex-col place-content-between">
             <!-- Life Bar -->
-            <div class="p-3 pr-20">
+            <div class="p-3 md:pl-10 xl:pl-20">
               <h3 class="font-bold">HP 10/20</h3>
-              <div class="bg-light-true-blue w-full p-2 rounded">
+              <div class="bg-ochre w-full p-2 rounded">
                 <div class="bg-maize w-full p-3 rounded">
 
                 </div>
@@ -152,26 +151,26 @@
             </div>
             <!-- Pokemon -->
             <div class="xl:row-span-2 flex place-content-end">
-              <img class="transform w-[40%] xl:w-[45%]" src="../../assets/IMG/sprites/pokemon/003.gif" alt="pokemon 1"
+              <img class="transform w-[150px] md:w-[45%] xl:w-[45%] md:mr-20 xl:mr-44 " src="../../assets/IMG/sprites/pokemon/003.gif" alt="pokemon 1"
                 id="pkmn2">
             </div>
             <!-- Other Pokemon -->
             <div class="relative flex place-content-end ">
-              <div class="flex flex-row gap-3 p-5 h-full pr-20 otherPkmn">
+              <div class="grid grid-cols-2 md:flex md:flex-row gap-3 p-5 h-full otherPkmn">
                 <div
-                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[45px] h-[45px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
+                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[60px] h-[60px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
                   <img class="object-contain" src="../../assets/IMG/sprites/pokemon/018.gif" alt="">
                 </div>
                 <div
-                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[45px] h-[45px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
+                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[60px] h-[60px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
                   <img src="../../assets/IMG/sprites/pokemon/006.gif" alt="">
                 </div>
                 <div
-                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[45px] h-[45px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
+                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[60px] h-[60px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
                   <img src="../../assets/IMG/sprites/pokemon/009.gif" alt="">
                 </div>
                 <div
-                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[45px] h-[45px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
+                  class="border-maize border-4 rounded bg-[rgba(0,0,0,0.5)] w-[60px] h-[60px] md:w-[70px] md:h-[70px] xl:w-[100px] xl:h-[100px]">
                   <img src="../../assets/IMG/sprites/pokemon/026.gif" alt="">
                 </div>
               </div>
