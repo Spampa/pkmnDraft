@@ -1,7 +1,7 @@
 export const pkmnData = [
     {
         "id": "003",
-        "_comment": "Venosaur",
+        "name": "venusaur",
         "move": [
             {
                 "name": "Sludge bomb",
@@ -23,7 +23,7 @@ export const pkmnData = [
     },
     {
         "id": "006",
-        "_comment": "Charizard",
+        "name": "charizard",
         "move": [
             {
                 "name": "Flamethrower",
@@ -45,7 +45,7 @@ export const pkmnData = [
     },
     {
         "id": "009",
-        "_comment": "Blastoise",
+        "name": "blastoise",
         "move": [
             {
                 "name": "Hydro pump",
@@ -67,7 +67,7 @@ export const pkmnData = [
     },
     {
         "id": "018",
-        "_comment": "Pidgeot",
+        "name": "pidgeot",
         "move": [
             {
                 "name": "Aerial ace",
@@ -89,7 +89,7 @@ export const pkmnData = [
     },
     {
         "id": "026",
-        "_comment": "Raichu",
+        "name": "raichu",
         "move": [
             {
                 "name": "Thunderbolt",
@@ -111,7 +111,7 @@ export const pkmnData = [
     },
     {
         "id": "031",
-        "_comment": "Nidoqueen",
+        "name": "nidoqueen",
         "move": [
             {
                 "name": "Earth power",
@@ -133,7 +133,7 @@ export const pkmnData = [
     },
     {
         "id": "034",
-        "_comment": "Nidoking",
+        "name": "nidoking",
         "move": [
             {
                 "name": "Earthquake",
@@ -155,7 +155,7 @@ export const pkmnData = [
     },
     {
         "id": "036",
-        "_comment": "Clefable",
+        "name": "clefable",
         "move": [
             {
                 "name": "Moonblast",
@@ -177,7 +177,7 @@ export const pkmnData = [
     },
     {
         "id": "051",
-        "_comment": "Dugtrio",
+        "name": "dugtrio",
         "move": [
             {
                 "name": "Earthquake",
@@ -199,7 +199,7 @@ export const pkmnData = [
     },
     {
         "id": "053",
-        "_comment": "Persian",
+        "name": "persian",
         "move": [
             {
                 "name": "Slash",
@@ -221,7 +221,7 @@ export const pkmnData = [
     },
     {
         "id": "065",
-        "_comment": "Alakazam",
+        "name": "alakazam",
         "move": [
             {
                 "name": "Psychic",
@@ -243,7 +243,7 @@ export const pkmnData = [
     },
     {
         "id": "068",
-        "_comment": "Machamp",
+        "name": "machamp",
         "move": [
             {
                 "name": "Earthquake",
@@ -265,7 +265,7 @@ export const pkmnData = [
     },
     {
         "id": "082",
-        "_comment": "Magneton",
+        "name": "magneton",
         "move": [
             {
                 "name": "Flash cannon",
@@ -287,7 +287,7 @@ export const pkmnData = [
     },
     {
         "id": "091",
-        "_comment": "Cloyster",
+        "name": "cloyster",
         "move": [
             {
                 "name": "Hydro pump",
@@ -309,7 +309,7 @@ export const pkmnData = [
     },
     {
         "id": "094",
-        "_comment": "Gengar",
+        "name": "gengar",
         "move": [
             {
                 "name": "Shadow ball",
@@ -331,7 +331,7 @@ export const pkmnData = [
     },
     {
         "id": "112",
-        "_comment": "Rhydon",
+        "name": "rhydon",
         "move": [
             {
                 "name": "Stone edge",
@@ -353,7 +353,7 @@ export const pkmnData = [
     },
     {
         "id": "127",
-        "_comment": "Pinsir",
+        "name": "pinsir",
         "move": [
             {
                 "name": "Brick break",
@@ -375,7 +375,7 @@ export const pkmnData = [
     },
     {
         "id": "128",
-        "_comment": "Tauros",
+        "name": "tauros",
         "move": [
             {
                 "name": "Zen Headbutt",
@@ -397,7 +397,7 @@ export const pkmnData = [
     },
     {
         "id": "130",
-        "_comment": "Gyarados",
+        "name": "gyarados",
         "move": [
             {
                 "name": "Earthquake",
@@ -419,7 +419,7 @@ export const pkmnData = [
     },
     {
         "id": "149",
-        "_comment": "Dragonite",
+        "name": "dragonite",
         "move": [
             {
                 "name": "Dragon Cclaw",
