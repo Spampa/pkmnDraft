@@ -1,13 +1,11 @@
 import { getLastMove, getMatchMove, insertMove, playerIndex, enemyIndex, matchData, matchList } from "./APICals.js";
-import { playerPkmn, enemyPkmn, loadingScreen, draft, initPokemon, addToDraft, draftEnd } from "../draft.js";
+import { playerPkmn, enemyPkmn, initPokemon, addToDraft, draftEnd } from "../draft.js";
 
 
-let syncMatch = setInterval(checkUpdate, 200);
+const syncMatch = setInterval(checkUpdate, 200);
 export let draftPkmn = [];
 let setDraftPkmn = false;
 let pkmnInit = false;
-
-const game = document.getElementById('game');
 
 function checkUpdate() {
     if (!setDraftPkmn) {
@@ -54,7 +52,7 @@ function checkUpdate() {
     }
 }
 
-let checkPlayers = setInterval(() => {
+const checkPlayers = setInterval(() => {
     if (matchData?.ID == undefined) return;
     matchList().then(response => {
         for (let i = 0; i < response.data.length; i++) {
