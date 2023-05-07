@@ -71,30 +71,7 @@ draft.children[1].addEventListener('click', () => {
 });
 
 
-export function initPokemon() {
-  const pkmn1 = document.getElementById('pkmn1');
-  const pkmn2 = document.getElementById('pkmn2');
-
-  /*
-  console.log('Player Pkmn: ' + playerPkmn);
-  console.log('Enemy Pkmn: ' + enemyPkmn);
-  */
-
-  pkmn1.src = imgPath + playerPkmn[0] + ".gif";
-  pkmn2.src = imgPath + enemyPkmn[0] + ".gif";
-
-  for(let j = 0; j < 2; j++){
-    for (let i = 0; i < playerPkmn.length; i++) {
-      if(j == 0){
-        otherPkmn[j].children[i].children[0].src = imgPath + playerPkmn[i] + ".gif";
-      }
-      else{
-        otherPkmn[j].children[i].children[0].src = imgPath + enemyPkmn[i] + ".gif";
-      }
-
-    }
-  }
-
+export async function initPokemon() {  
   let temp = [];
   for (let j = 0; j < playerPkmn.length; j++) {
       for (let i = 0; i < pkmnData.length; i++) {
@@ -114,8 +91,31 @@ export function initPokemon() {
       }
   }
   enemyPkmn = temp;
+
+
   
   initAllPkmnData();
+  return [playerPkmn, enemyPkmn];
+}
+
+export function updatePkmnUI(index1, index2){
+  const pkmn1 = document.getElementById('pkmn1');
+  const pkmn2 = document.getElementById('pkmn2');
+  
+  pkmn1.src = imgPath + playerPkmn[index1].id + ".gif";
+  pkmn2.src = imgPath + enemyPkmn[index2].id + ".gif";
+
+  for(let j = 0; j < 2; j++){
+    for (let i = 0; i < playerPkmn.length; i++) {
+      if(j == 0){
+        otherPkmn[j].children[i].children[0].src = imgPath + playerPkmn[i].id + ".gif";
+      }
+      else{
+        otherPkmn[j].children[i].children[0].src = imgPath + enemyPkmn[i].id + ".gif";
+      }
+
+    }
+  }
 }
 
 playBtn.addEventListener("click", function () {

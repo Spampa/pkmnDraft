@@ -1,5 +1,5 @@
 import { getLastMove, getMatchMove, insertMove, playerIndex, enemyIndex, matchData, matchList } from "./APICals.js";
-import { playerPkmn, enemyPkmn, initPokemon, addToDraft, draftEnd } from "../draft.js";
+import { playerPkmn, enemyPkmn, initPokemon, addToDraft, draftEnd, updatePkmnUI } from "../draft.js";
 
 
 const syncMatch = setInterval(checkUpdate, 200);
@@ -43,7 +43,9 @@ function checkUpdate() {
                         enemyPkmn.unshift(mossa[3 - i]);
                     }
                     pkmnInit = true;
-                    initPokemon();
+                    initPokemon().then(() => {
+                        updatePkmnUI(0,0);
+                    });
                     clearInterval(syncMatch);
                     return;
                 }

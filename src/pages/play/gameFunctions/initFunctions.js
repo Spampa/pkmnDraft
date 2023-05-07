@@ -15,12 +15,12 @@ export function initAllPkmnData() {
     });
 }
 
-async function initMoves() {
+export async function initMoves(index = 0) {
     for (let i = 0; i < 4; i++) {
-        fetch('https://pokeapi.co/api/v2/move/' + playerPkmn[0].move[i].id).then
+        fetch('https://pokeapi.co/api/v2/move/' + playerPkmn[index].move[i].id).then
             (response => response.json()).then(data => {
                 setMoveColor(moves.children[i], data.type.name);
-                moves.children[i].innerHTML = playerPkmn[0].move[i].name;
+                moves.children[i].innerHTML = playerPkmn[index].move[i].name;
             });
     }
 }
