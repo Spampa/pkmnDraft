@@ -1,7 +1,7 @@
-import { matchList, searchMatch, insertMove, playerIndex, getLastMove, enemyIndex } from "./connectionFunction.js";
-import { draftPkmn } from "./game.js";
+import { matchList, searchMatch, insertMove, playerIndex, getLastMove, enemyIndex } from "./connectionFunctions/APICals.js";
+import { draftPkmn } from "./connectionFunctions/syncGame.js";
 import { pkmnData } from "./pkmnData.js";
-import { initStats } from "./statsFunction.js";
+import { initStats } from "./gameFunctions/statsFunction.js";
 
 const imgPath = "../../assets/IMG/sprites/pokemon/";
 const pkmn = [];

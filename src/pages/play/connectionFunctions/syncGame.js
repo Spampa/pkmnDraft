@@ -1,12 +1,11 @@
-import { getLastMove, getMatchMove, insertMove, playerIndex, enemyIndex, matchData, matchList } from "./connectionFunction.js";
-import { playerPkmn, enemyPkmn, loadingScreen, draft, initPokemon, addToDraft, draftEnd } from "./draft.js";
+import { getLastMove, getMatchMove, insertMove, playerIndex, enemyIndex, matchData, matchList } from "./APICals.js";
+import { playerPkmn, enemyPkmn, loadingScreen, draft, initPokemon, addToDraft, draftEnd } from "../draft.js";
 
 
-setInterval(checkUpdate, 200);
+let syncMatch = setInterval(checkUpdate, 200);
 export let draftPkmn = [];
 let setDraftPkmn = false;
 let pkmnInit = false;
-let move;
 
 const game = document.getElementById('game');
 
@@ -47,6 +46,7 @@ function checkUpdate() {
                     }
                     pkmnInit = true;
                     initPokemon();
+                    clearInterval(syncMatch);
                     return;
                 }
             }

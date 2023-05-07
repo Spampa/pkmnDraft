@@ -1,4 +1,4 @@
-import { loadingScreen, draft, generatePkmn } from "./draft.js";
+import { loadingScreen, draft, generatePkmn } from "../draft.js";
 
 let credentials = btoa('4ID:Grena');
 let auth = {'Authorization': 'Basic ' + credentials};
