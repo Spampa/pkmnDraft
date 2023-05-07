@@ -63,6 +63,7 @@ const checkPlayers = setInterval(() => {
             }
         }
         console.log('Partita iniziata');
+        console.log(idP2);
 
         let move = '';
         for (let i = 0; i < draftPkmn.length; i++) {
