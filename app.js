@@ -6,14 +6,16 @@ const logoutBtn = document.getElementById('logoutBtn');
 
 
 function logout(){
-    console.log(textUsername);
     localStorage.removeItem('user_id');
     localStorage.removeItem('username');
 
     for(let i = 0; i < textUsername.length; i++){
         textUsername[i].innerHTML = '';
     }
-    userIcon.classList.add('hidden');
+    if(userIcon != null){
+        userIcon.classList.add('hidden');
+    }
+
     loginBtn.classList.remove('hidden');
     logoutBtn.classList.add('hidden');
 }
