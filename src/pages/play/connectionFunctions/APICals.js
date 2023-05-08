@@ -68,8 +68,9 @@ export const getLastMove = async () => {
 export const getMatchMove = async () => {
     let id = matchData?.data?.id;
     if(id == undefined){
-        id = matchData.ID;
+        id = matchData?.ID;
     }
+    if(id == undefined) return;
     let data = await fetch(`https://classe5ID.altervista.org/games/mosse/${id}`, {
         method: 'GET',
         headers: auth,

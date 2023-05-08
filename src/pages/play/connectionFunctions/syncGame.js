@@ -8,10 +8,6 @@ let pkmnInit = false;
 export let idP2;
 
 function checkUpdate() {
-    getLastMove().then(response => {
-        //console.log(response);
-    });
-
     if (!setDraftPkmn) {
         getLastMove().then(response => {
             if (response?.data?.play?.MOSSA == undefined) return;
@@ -78,13 +74,13 @@ const checkPlayers = setInterval(() => {
                 }
                 idP2 = response.data.play.PLAYER;
                 idP2 = idP2.substring(5, idP2.length);
+                console.log('partita Iniziata');
             }
         });
     }
     else if(playerIndex == 0){
         getLastMove().then(response => {
             if(response.data.play.MOSSA =='nameGet'){
-                console.log('partita Iniziata');
                 let move = '';
                 for (let i = 0; i < draftPkmn.length; i++) {
                     move += draftPkmn[i] + ',';

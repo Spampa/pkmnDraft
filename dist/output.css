@@ -1127,6 +1127,14 @@ h5{
   .md\:text-\[40px\] {
     font-size: 40px;
   }
+
+  .md\:text-xl {
+    font-size: 1.25rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+  }
 }
 
 @media (min-width: 1280px) {
