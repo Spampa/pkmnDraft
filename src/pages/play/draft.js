@@ -1,5 +1,5 @@
 import { matchList, searchMatch, insertMove, playerIndex, getLastMove, enemyIndex } from "./connectionFunctions/APICals.js";
-import { draftPkmn } from "./connectionFunctions/syncGame.js";
+import { draftPkmn, idP2 } from "./connectionFunctions/syncGame.js";
 import { pkmnData } from "./pkmnData.js";
 import { initAllPkmnData } from "./gameFunctions/initFunctions.js";
 
@@ -18,6 +18,7 @@ const playBtn = document.getElementById("playBtn");
 export const draft = document.getElementById("draft");
 export const loadingScreen = document.getElementById('loadingScreen');
 const otherPkmn = document.getElementsByClassName('otherPkmn');
+const enemyUsername = document.getElementById('enemyUsername');
 
 let pickCounter = 0;
 
@@ -28,6 +29,7 @@ export async function addToDraft() {
     draft.classList.add('hidden');
     loadingScreen.classList.remove('hidden');
     loadingScreen.children[1].innerHTML = 'In attesa del tuo avversario';
+    enemyUsername.innerHTML = idP2;
     insertMove(playerIndex + 'aP' + enemyPkmn[0] + ',' + enemyPkmn[1] + ',' + playerPkmn[0] + ',' + playerPkmn[1]).then( () => {
       getLastMove();
     });

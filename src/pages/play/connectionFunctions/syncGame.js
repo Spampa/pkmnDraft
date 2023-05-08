@@ -1,33 +1,44 @@
 import { getLastMove, getMatchMove, insertMove, playerIndex, enemyIndex, matchData, matchList } from "./APICals.js";
 import { playerPkmn, enemyPkmn, initPokemon, addToDraft, draftEnd, updatePkmnUI } from "../draft.js";
 
-
 const syncMatch = setInterval(checkUpdate, 200);
 export let draftPkmn = [];
 let setDraftPkmn = false;
 let pkmnInit = false;
+export let idP2;
 
 function checkUpdate() {
+    getLastMove().then(response => {
+        //console.log(response);
+    });
+
     if (!setDraftPkmn) {
         getLastMove().then(response => {
             if (response?.data?.play?.MOSSA == undefined) return;
             let mossa = JSON.stringify(response.data.play.MOSSA);
-            mossa = mossa.substring(1, mossa.length - 1);
-            mossa = mossa.split(',');
-            draftPkmn = [];
-            if (playerIndex == 0) {
-                for (let i = 0; i < 4; i++) {
-                    draftPkmn.push(mossa[i]);
+            let moveType = mossa.substring(1, 3);
+            if(moveType == 'dP'){
+                if(playerIndex == 0){
+                    mossa = mossa.substring(3, mossa.length - 1);
                 }
-            }
-            else {
-                for (let i = 4; i < 8; i++) {
-                    draftPkmn.push(mossa[i]);
+                else{
+                    mossa = mossa.substring(4, mossa.length - 1);
                 }
+                mossa = mossa.split(',');
+                draftPkmn = [];
+                if (playerIndex == 0) {
+                    for (let i = 0; i < 4; i++) {
+                        draftPkmn.push(mossa[i]);
+                    }
+                }
+                else {
+                    for (let i = 4; i < 8; i++) {
+                        draftPkmn.push(mossa[i]);
+                    }
+                }
+                addToDraft();
+                setDraftPkmn = true;
             }
-
-            addToDraft();
-            setDraftPkmn = true;
         });
     }
     else if(draftEnd == true && !pkmnInit){
@@ -55,23 +66,33 @@ function checkUpdate() {
 }
 
 const checkPlayers = setInterval(() => {
-    if (matchData?.ID == undefined) return;
-    matchList().then(response => {
-        for (let i = 0; i < response.data.length; i++) {
-            if (matchData.ID == response.data[i].ID) {
-                return;
+    if(idP2 == undefined){
+        getLastMove().then(response => {
+            if(response?.data?.play?.MOSSA == undefined) return;
+            if(response.data.play.MOSSA == enemyIndex + 'join'){
+                if(playerIndex == 0){
+                    insertMove(playerIndex + 'join');
+                }
+                else{
+                    insertMove('nameGet');
+                }
+                idP2 = response.data.play.PLAYER;
+                idP2 = idP2.substring(5, idP2.length);
             }
-        }
-        console.log('Partita iniziata');
-        console.log(idP2);
-
-        let move = '';
-        for (let i = 0; i < draftPkmn.length; i++) {
-            move += draftPkmn[i] + ',';
-        }
-        move = move.substring(0, move.length - 1);
-        insertMove(move);
-        clearInterval(checkPlayers);
-    });
-
+        });
+    }
+    else if(playerIndex == 0){
+        getLastMove().then(response => {
+            if(response.data.play.MOSSA =='nameGet'){
+                console.log('partita Iniziata');
+                let move = '';
+                for (let i = 0; i < draftPkmn.length; i++) {
+                    move += draftPkmn[i] + ',';
+                }
+                move = move.substring(0, move.length - 1);
+                insertMove('dP' + move);
+                clearInterval(checkPlayers);
+            }
+        });
+    }
 }, 200);
