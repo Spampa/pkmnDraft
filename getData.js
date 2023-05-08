@@ -17,17 +17,18 @@ initializeApp(firebaseConfig);
 const textUsername = document.getElementsByClassName("textUsername");
 
 const db = getDatabase();
-const ID = localStorage.getItem('user_id');
-console.log(ID);
-const starCountRef = ref(db, 'users/' + ID);
+let ID;
 
-
-onValue(starCountRef, (snapshot) => {
-  const data = snapshot.val();
-  localStorage.setItem('username', data.username);
-  console.log('call to firebase');
-});
-
+export async function setUsername(path) {
+  ID = localStorage.getItem('user_id');
+  let starCountRef = ref(db, 'users/' + ID);
+  await onValue(starCountRef, (snapshot) => {
+    const data = snapshot.val();
+    localStorage.setItem('username', data.username);
+    console.log('call to firebase');
+    window.location.href = path;
+  });
+}
 
 let username = localStorage.getItem('username');
 

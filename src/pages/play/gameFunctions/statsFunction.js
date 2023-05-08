@@ -83,29 +83,27 @@ export async function updateLife(playerDamage, enemyDamage){
 
     if(battleData.player.life <= 0){
         lifeBar[0].children[1].children[0].style.width = '0%';
-        lifeBar[0].children[1].children[0].innerHTML = 'HP ' + 0 + '/' + battleData.player.lifeMax;
+        lifeBar[0].children[0].children[0].innerHTML = 'HP ' + 0 + '/' + battleData.player.lifeMax;
         battleData.player.pkmn--;
         initStats(true, false);
         updatePkmnUI(4 - battleData.player.pkmn, 4 - battleData.enemy.pkmn);
         initMoves(4 - battleData.player.pkmn);
     }
     else{
-        lifeBar[0].children[1].children[0].innerHTML = 'HP ' + battleData.player.life + '/' + battleData.player.lifeMax;
+        lifeBar[0].children[0].children[0].innerHTML = 'HP ' + battleData.player.life + '/' + battleData.player.lifeMax;
         lifeBar[0].children[1].children[0].style.width = (battleData.player.life / battleData.player.lifeMax) * 100 + '%';
 
         if(battleData.enemy.life <= 0){
             lifeBar[1].children[1].children[0].style.width = '0%';
-            lifeBar[1].children[1].children[0].innerHTML = 'HP ' + 0 + '/' + battleData.enemy.lifeMax;
+            lifeBar[1].children[0].children[0].innerHTML = 'HP ' + 0 + '/' + battleData.enemy.lifeMax;
             battleData.enemy.pkmn--;
             updatePkmnUI(4 - battleData.player.pkmn, 4 - battleData.enemy.pkmn);
             initStats(false, true);
         }
         else{
-            lifeBar[1].children[1].children[0].innerHTML = 'HP ' + battleData.enemy.life + '/' + battleData.enemy.lifeMax;
+            lifeBar[1].children[0].children[0].innerHTML = 'HP ' + battleData.enemy.life + '/' + battleData.enemy.lifeMax;
             lifeBar[1].children[1].children[0].style.width = (battleData.enemy.life / battleData.enemy.lifeMax) * 100 + '%';
         }
     }
-
-
 }
 

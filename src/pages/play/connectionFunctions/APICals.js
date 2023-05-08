@@ -7,14 +7,14 @@ export let enemyIndex
 export let matchData;
 
 const createMatch = async () => {
-    let data = await fetch(`https://classe5ID.altervista.org/games/partita/${'pkmn_'+localStorage.getItem('user_id')}`,{
+    generatePkmn();
+    let data = await fetch(`https://classe5ID.altervista.org/games/partita/${'pkmn_'+localStorage.getItem('username')}`,{
         method: 'POST',
         headers: auth,
     });
     playerIndex = 0;
     enemyIndex = 1;
     data = await data.json();
-    generatePkmn();
     return data;
 }
 
@@ -28,13 +28,12 @@ export const matchList = async () => {
 }
 
 const joinGame = async (id) => {
-    let data = await fetch(`https://classe5ID.altervista.org/games/join/${id}/${'pkmn_'+localStorage.getItem('user_id')}`,{
+    let data = await fetch(`https://classe5ID.altervista.org/games/join/${id}/${'pkmn_'+localStorage.getItem('username')}`,{
         method: 'POST',
         headers: auth,
     });
     playerIndex = 1;
     enemyIndex = 0;
-    console.log('Partita iniziata');
     data = await data.json();
     return data;
 }
@@ -44,7 +43,7 @@ export const insertMove = async (move) => {
     if(id == undefined){
         id = matchData.ID;
     }
-    let data = await fetch(`https://classe5ID.altervista.org/games/mossa/${id}/${'pkmn_'+localStorage.getItem('user_id')}/${move}`, {
+    let data = await fetch(`https://classe5ID.altervista.org/games/mossa/${id}/${'pkmn_'+localStorage.getItem('username')}/${move}`, {
         method: 'POST',
         headers: auth,
     });
@@ -87,6 +86,7 @@ export const searchMatch = async () => {
                 if(response.data[i].PLAYER2 == null){
                     joinGame(response.data[i].ID).then(response => {
                         matchData = response;
+                        insertMove(playerIndex + 'join');
                     });
                     console.log("Match joined");
                     return;
@@ -98,7 +98,6 @@ export const searchMatch = async () => {
             matchList().then(response => {
                 if(response?.data == undefined) return;
                 if(matchData?.data == undefined) return;
-                
                 for(let i = 0; i < response.data.length; i++){
                     if(response.data[i]?.ID != undefined){
                         if(response.data[i].ID == matchData.data.id){

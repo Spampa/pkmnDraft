@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
 import { getDatabase , ref , set } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+import { setUsername } from "../../../getData.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAvMrtUSY_F6ThumCsWIqB2B0zYakFbjRs",
@@ -54,7 +55,7 @@ function writeUserData(userId, username, email){
     email : email,
   })
   .then(() => {
-    window.location.href = "../../index.html";
+    setUsername("../../index.html");
   })
   .catch((error) => {
     console.log("Data not saved");

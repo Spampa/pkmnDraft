@@ -1,5 +1,6 @@
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+import { setUsername } from "../../../getData.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAvMrtUSY_F6ThumCsWIqB2B0zYakFbjRs",
@@ -24,7 +25,7 @@ loginBtn.addEventListener('click', () => {
         .then((userCredential) => {
             const user = userCredential.user;
             localStorage.setItem('user_id', user.uid);
-            window.location.href = "../../index.html";
+            setUsername("../../index.html");
         })
         .catch((error) => {
             const errorCode = error.code;
