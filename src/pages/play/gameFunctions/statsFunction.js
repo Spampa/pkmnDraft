@@ -77,33 +77,65 @@ export async function getDamage(power, stats, type){
     return Math.floor(damage);
 }
 
-export async function updateLife(playerDamage, enemyDamage){
-    battleData.player.life -= enemyDamage;
-    battleData.enemy.life -= playerDamage;
-
-    if(battleData.player.life <= 0){
-        lifeBar[0].children[1].children[0].style.width = '0%';
-        lifeBar[0].children[0].children[0].innerHTML = 'HP ' + 0 + '/' + battleData.player.lifeMax;
-        battleData.player.pkmn--;
-        initStats(true, false);
-        updatePkmnUI(4 - battleData.player.pkmn, 4 - battleData.enemy.pkmn);
-        initMoves(4 - battleData.player.pkmn);
-    }
-    else{
-        lifeBar[0].children[0].children[0].innerHTML = 'HP ' + battleData.player.life + '/' + battleData.player.lifeMax;
-        lifeBar[0].children[1].children[0].style.width = (battleData.player.life / battleData.player.lifeMax) * 100 + '%';
-
+export async function updateLife(playerDamage, enemyDamage, p = -1){
+    if(battleData.player.stats[5].base_stat > battleData.enemy.stats[5].base_stat || p == 0){
+        battleData.enemy.life -= playerDamage;
         if(battleData.enemy.life <= 0){
-            lifeBar[1].children[1].children[0].style.width = '0%';
-            lifeBar[1].children[0].children[0].innerHTML = 'HP ' + 0 + '/' + battleData.enemy.lifeMax;
-            battleData.enemy.pkmn--;
-            updatePkmnUI(4 - battleData.player.pkmn, 4 - battleData.enemy.pkmn);
-            initStats(false, true);
+            diedPkmn(1);
         }
         else{
-            lifeBar[1].children[0].children[0].innerHTML = 'HP ' + battleData.enemy.life + '/' + battleData.enemy.lifeMax;
-            lifeBar[1].children[1].children[0].style.width = (battleData.enemy.life / battleData.enemy.lifeMax) * 100 + '%';
+            battleData.player.life -= enemyDamage;
+            if(battleData.player.life <= 0){
+                diedPkmn(0);
+            }
+            else{
+                updateLifeBar();
+            }
         }
+    }
+    else if(battleData.player.stats[5].base_stat < battleData.enemy.stats[5].base_stat || p == 1){
+        battleData.player.life -= enemyDamage;
+        if(battleData.player.life <= 0){
+            diedPkmn(0);
+        }
+        else{
+            battleData.enemy.life -= playerDamage;
+            if(battleData.enemy.life <= 0){
+                diedPkmn(1);
+            }
+            else{
+                updateLifeBar();
+            }
+        }
+    }
+    else{
+        let random = Math.floor(Math.random() * 2);
+        updateLife(playerDamage, enemyDamage, random);
     }
 }
 
+function diedPkmn(index){
+    lifeBar[index].children[1].children[0].style.width = '0%';
+    lifeBar[index].children[0].children[0].innerHTML = 'HP ' + 0 + '/' + battleData.player.lifeMax;
+
+    if(index == 0){
+        battleData.player.pkmn--;
+        initStats(true, false);
+        initMoves(4 - battleData.player.pkmn);
+    }
+    else{
+        battleData.enemy.pkmn--;
+        initStats(false, true);
+        initMoves(4 - battleData.enemy.pkmn);
+    }
+    updatePkmnUI(4 - battleData.player.pkmn, 4 - battleData.enemy.pkmn);
+}
+
+function updateLifeBar(){
+
+    lifeBar[0].children[0].children[0].innerHTML = 'HP ' + battleData.player.life + '/' + battleData.player.lifeMax;
+    lifeBar[0].children[1].children[0].style.width = (battleData.player.life / battleData.player.lifeMax) * 100 + '%';
+
+    lifeBar[1].children[0].children[0].innerHTML = 'HP ' + battleData.enemy.life + '/' + battleData.enemy.lifeMax;
+    lifeBar[1].children[1].children[0].style.width = (battleData.enemy.life / battleData.enemy.lifeMax) * 100 + '%';
+}

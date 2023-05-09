@@ -45,6 +45,7 @@ const checkMoves = setInterval(() => {
     if(eMove && pMove) return;
     getMatchMove().then(response => {
         if(response?.data == undefined) return;
+        //console.log(response.data);
 
         for (let i = 0; i < 3; i++) {
             if(response?.data?.moves[i]?.MOSSA == undefined) return;
@@ -64,13 +65,11 @@ const checkMoves = setInterval(() => {
             }
         }
         if(eMove && pMove){
-            eMove = false;
-            pMove = false;
             insertMove('endTurn');
             endTurn();
         }
     });
-}, 200);
+}, 500);
 
 function endTurn() {
     /*
@@ -80,6 +79,8 @@ function endTurn() {
     updateLife(playerMove, enemyMove).then(() => {
         playerMove = null;
         enemyMove = null;
+        eMove = false;
+        pMove = false;
     });
 }
 
