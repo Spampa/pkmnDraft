@@ -20,6 +20,7 @@ moves.children[3].addEventListener('click', () => {
     sendMove(3);
 });
 
+let moveCount = 0;
 
 function sendMove(index) {
     if (playerMove != null) return;
@@ -32,42 +33,39 @@ function sendMove(index) {
         playerMove = data;
         getDamage(playerMove.power, battleData.enemy.stats).then((damage) => {
             playerMove = damage;
-            insertMove(playerIndex + 'mP' + damage);
+            insertMove(playerIndex + '' + moveCount + 'mP' + damage);
         });
     });
 }
 
-let pMove = false;
-let eMove = false;
-
 const checkMoves = setInterval(() => {
-    if(eMove && pMove) return;
     getMatchMove().then(response => {
-        if(response?.data == undefined) return;
+        if(response?.data?.moves[5]?.MOSSA == undefined) return;
+        for(let i = 0; i < 5 ; i++){
+            let mossa = response.data.moves[i].MOSSA;
+            let moveType;
+            if(moveCount >= 10){
+                moveType = mossa.substring(0, 5);
+            }
+            else{
+                moveType = mossa.substring(0, 4);
+            }
 
-
-        for (let i = 0; i < 3; i++) {
-            if(response?.data?.moves[i]?.MOSSA == undefined) return;
-            //console.log(response.data.moves[i].MOSSA);
-            let move = JSON.stringify(response.data.moves[i].MOSSA);
-            let moveType = move.substring(1, 4);
-            if (moveType == 'end' && i != 0) {
-                break;
+            if(moveType == enemyIndex + '' + moveCount + 'mP'){
+                if(moveCount >= 10){
+                    enemyMove = mossa.substring(5);
+                }
+                else{
+                    enemyMove = mossa.substring(4);
+                }
+                return;
             }
-            else if (moveType == enemyIndex + 'mP') {
-                move = move.substring(4, move.length - 1);
-                enemyMove = move;
-                eMove = true;
-            }
-            else if (moveType == playerIndex + 'mP') {
-                pMove = true;
-            }
-        }
-        if(eMove && pMove){
-            insertMove('endTurn');
-            endTurn();
         }
     });
+    if(playerMove != null && enemyMove != null){
+        moveCount++;
+        endTurn();
+    }
 }, 500);
 
 function endTurn() {
@@ -78,7 +76,5 @@ function endTurn() {
     updateLife(playerMove, enemyMove).then(() => {
         playerMove = null;
         enemyMove = null;
-        eMove = false;
-        pMove = false;
     });
 }
