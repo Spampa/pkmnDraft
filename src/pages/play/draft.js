@@ -1,5 +1,5 @@
-import { matchList, searchMatch, insertMove, playerIndex, getLastMove, enemyIndex } from "./connectionFunctions/APICals.js";
-import { draftPkmn, idP2 } from "./connectionFunctions/syncGame.js";
+import { searchMatch, insertMove, playerIndex, getLastMove } from "./connectionFunctions/APICals.js";
+import { draftPkmn, idP2, startSync } from "./connectionFunctions/syncGame.js";
 import { pkmnData } from "./pkmnData.js";
 import { initAllPkmnData } from "./gameFunctions/initFunctions.js";
 
@@ -13,10 +13,11 @@ export let playerPkmn = [];
 export let enemyPkmn = [];
 export let draftEnd = false;
 
-
-const playBtn = document.getElementById("playBtn");
 export const draft = document.getElementById("draft");
 export const loadingScreen = document.getElementById('loadingScreen');
+const startGameContainer = document.getElementById('startGameContainer');
+const winContainer = document.getElementById('winContainer');
+const playBtn = document.getElementById("playBtn");
 const otherPkmn = document.getElementsByClassName('otherPkmn');
 const enemyUsername = document.getElementById('enemyUsername');
 
@@ -122,7 +123,26 @@ export function updatePkmnUI(index1, index2){
 
 playBtn.addEventListener("click", function () {
   searchMatch();
-  document.getElementById('playContainer').classList.add('hidden');
+  startGameContainer.classList.add('hidden');
   loadingScreen.classList.remove('hidden');
   loadingScreen.classList.add('grid');
+  startSync();
 });
+
+export function endGame(win){
+  preGame.classList.remove('hidden');
+  game.classList.remove('flex');
+  game.classList.add('hidden');
+  loadingScreen.classList.add('hidden');
+  winContainer.classList.remove('hidden');
+  winContainer.classList.add('flex');
+
+
+  if(win == true){
+    winContainer.children[1].innerHTML = 'Hai vinto!';
+  }
+  else{
+    winContainer.children[1].innerHTML = 'Hai perso!';
+  }
+}
+

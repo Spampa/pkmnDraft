@@ -4,6 +4,7 @@ import { battleData, getDamage, updateLife } from "./statsFunction.js";
 
 let playerMove = null;
 let enemyMove = null;
+
 const moves = document.getElementById('moves');
 
 moves.children[0].addEventListener('click', () => {
@@ -43,11 +44,11 @@ const checkMoves = setInterval(() => {
     if(eMove && pMove) return;
     getMatchMove().then(response => {
         if(response?.data == undefined) return;
-        console.log(response.data);
+
 
         for (let i = 0; i < 3; i++) {
             if(response?.data?.moves[i]?.MOSSA == undefined) return;
-
+            //console.log(response.data.moves[i].MOSSA);
             let move = JSON.stringify(response.data.moves[i].MOSSA);
             let moveType = move.substring(1, 4);
             if (moveType == 'end' && i != 0) {

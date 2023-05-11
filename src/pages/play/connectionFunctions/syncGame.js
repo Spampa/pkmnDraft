@@ -1,11 +1,17 @@
-import { getLastMove, getMatchMove, insertMove, playerIndex, enemyIndex, matchData, matchList } from "./APICals.js";
+import { getLastMove, getMatchMove, insertMove, playerIndex, enemyIndex } from "./APICals.js";
 import { playerPkmn, enemyPkmn, initPokemon, addToDraft, draftEnd, updatePkmnUI } from "../draft.js";
 
-const syncMatch = setInterval(checkUpdate, 200);
+export let syncMatch;
+export let checkPlayers;
 export let draftPkmn = [];
 let setDraftPkmn = false;
 let pkmnInit = false;
 export let idP2;
+
+export function startSync(){
+    checkPlayers = setInterval(checkJoin, 200);
+    syncMatch = setInterval(checkUpdate, 200);
+}
 
 function checkUpdate() {
     if (!setDraftPkmn) {
@@ -61,7 +67,7 @@ function checkUpdate() {
     }
 }
 
-const checkPlayers = setInterval(() => {
+function checkJoin(){
     if(idP2 == undefined){
         getLastMove().then(response => {
             if(response?.data?.play?.MOSSA == undefined) return;
@@ -91,4 +97,4 @@ const checkPlayers = setInterval(() => {
             }
         });
     }
-}, 200);
+};

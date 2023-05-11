@@ -2,8 +2,8 @@ import { playerPkmn, enemyPkmn } from "../draft.js";
 import { initStats } from "./statsFunction.js";
 
 const moves = document.getElementById('moves');
-const preGame = document.getElementById('preGame');
-const game = document.getElementById('game');
+export const preGame = document.getElementById('preGame');
+export const game = document.getElementById('game');
 
 export function initAllPkmnData() {
     initStats();

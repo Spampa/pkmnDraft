@@ -76,11 +76,18 @@
           <p class="text-white text-[25px] md:text-[40px] ">In cerca di un avversario</p>
         </div>
 
+        <!-- Vicotry Text -->
+        <div class="flex-col place-content-center text-center hidden" id="winContainer">
+          <a href="../../index.html">
+            <button class="bg-maize transition-colors hover:bg-light-maize rounded-full px-7 py-1 text-4xl font-bold">Torna alla Home</button>
+          </a>
+          <h1 class="text-white my-2" id="winText"></h1>
+        </div>
+
         <!-- Play Btn -->
-        <div class="flex flex-col place-content-center " id="playContainer">
+        <div class="flex flex-col place-content-center text-center " id="startGameContainer">
           <button class="bg-maize transition-colors hover:bg-light-maize rounded-full px-7 py-1 text-4xl font-bold"
             id="playBtn">PLAY!</button>
-            <h1 class="text-white" id="winText">Hai Vinto!</h1>
         </div>
 
         <!-- Draft -->
@@ -125,15 +132,15 @@
             </div>
             <!-- Pokemon -->
             <div class="xl:row-span-2">
-              <img class="transform -scale-x-100 w-[150px] md:w-[45%] xl:w-[45%] md:ml-20 xl:ml-44" src="../../assets/IMG/sprites/pokemon/003.gif"
-                alt="pokemon 1" id="pkmn1">
+              <img class="transform -scale-x-100 w-[150px] md:w-[45%] xl:w-[45%] md:ml-20 xl:ml-44"
+                src="../../assets/IMG/sprites/pokemon/003.gif" alt="pokemon 1" id="pkmn1">
             </div>
             <!-- Life Bar -->
             <div class="p-3 md:pr-10 xl:pr-20 lifeBar">
               <div class="flex flex-row place-content-between">
                 <p class="font-bold text-sm md:text-2xl">HP 10/20</p>
                 <p class="font-bold textUsername text-sm md:text-2xl">Name</p>
-              </div> 
+              </div>
               <div class="bg-light-true-blue w-full p-2 rounded">
                 <div class="bg-maize w-full p-3 rounded">
 
@@ -145,10 +152,10 @@
           <div class="flex flex-col place-content-between">
             <!-- Life Bar -->
             <div class="p-3 md:pl-10 xl:pl-20 lifeBar">
-             <div class="flex flex-row place-content-between">
+              <div class="flex flex-row place-content-between">
                 <h3 class="font-bold text-sm md:text-2xl">HP 10/20</h3>
                 <h3 class="font-bold text-sm md:text-2xl" id="enemyUsername">Name</h3>
-              </div> 
+              </div>
               <div class="bg-ochre w-full p-2 rounded">
                 <div class="bg-maize w-full p-3 rounded">
 
@@ -157,8 +164,8 @@
             </div>
             <!-- Pokemon -->
             <div class="xl:row-span-2 flex place-content-end">
-              <img class="transform w-[150px] md:w-[45%] xl:w-[45%] md:mr-20 xl:mr-44 " src="../../assets/IMG/sprites/pokemon/003.gif" alt="pokemon 1"
-                id="pkmn2">
+              <img class="transform w-[150px] md:w-[45%] xl:w-[45%] md:mr-20 xl:mr-44 "
+                src="../../assets/IMG/sprites/pokemon/003.gif" alt="pokemon 1" id="pkmn2">
             </div>
             <!-- Other Pokemon -->
             <div class="relative flex place-content-end ">
@@ -211,4 +218,5 @@
   <script type="module" src="../../../getData.js"></script>
   <script src="../../../app.js"></script>
 </body>
+
 </html>

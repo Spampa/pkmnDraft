@@ -1,4 +1,4 @@
-import { playerPkmn, enemyPkmn, updatePkmnUI} from "../draft.js";
+import { playerPkmn, enemyPkmn, updatePkmnUI, endGame} from "../draft.js";
 import { initMoves } from "./initFunctions.js";
 const lifeBar = document.getElementsByClassName('lifeBar');
 const level = 100;
@@ -7,14 +7,14 @@ export let battleData = {
     'player': {
         'lifeMax': 0,
         'life': 0,
-        'pkmn': 4,
+        'pkmn': 1,
         'stats': {},
         'type': '',
     },
     'enemy': {
         'lifeMax': 0,
         'life': 0,
-        'pkmn': 4,
+        'pkmn': 1,
         'stats': {},
         'type' : '',
     }
@@ -120,14 +120,22 @@ function diedPkmn(index){
 
     if(index == 0){
         battleData.player.pkmn--;
-        initStats(true, false);
-        initMoves(4 - battleData.player.pkmn);
+        if(battleData.player.pkmn == 0) endGame(false);
+        else{
+            initStats(true, false);
+            initMoves(4 - battleData.player.pkmn);
+        }
+
     }
     else{
         battleData.enemy.pkmn--;
-        initStats(false, true);
+        if(battleData.enemy.pkmn == 0) endGame(true);
+        else initStats(false, true);
     }
-    updatePkmnUI(4 - battleData.player.pkmn, 4 - battleData.enemy.pkmn);
+    if(battleData.player.pkmn > 0 && battleData.enemy.pkmn > 0){
+        updatePkmnUI(4 - battleData.player.pkmn, 4 - battleData.enemy.pkmn);
+    }
+
 }
 
 function updateLifeBar(){
