@@ -1,3 +1,4 @@
+import { playerIndex } from "../connectionFunctions/APICals.js";
 import { playerPkmn, enemyPkmn, updatePkmnUI, endGame} from "../draft.js";
 import { initMoves } from "./initFunctions.js";
 const lifeBar = document.getElementsByClassName('lifeBar');
@@ -7,14 +8,14 @@ export let battleData = {
     'player': {
         'lifeMax': 0,
         'life': 0,
-        'pkmn': 1,
+        'pkmn': 4,
         'stats': {},
         'type': '',
     },
     'enemy': {
         'lifeMax': 0,
         'life': 0,
-        'pkmn': 1,
+        'pkmn': 4,
         'stats': {},
         'type' : '',
     }
@@ -77,8 +78,9 @@ export async function getDamage(power, stats, type){
     return Math.floor(damage);
 }
 
-export async function updateLife(playerDamage, enemyDamage, p = -1){
-    if(battleData.player.stats[5].base_stat > battleData.enemy.stats[5].base_stat || p == 0){
+export async function updateLife(playerDamage, enemyDamage, p){
+
+    if(battleData.player.stats[5].base_stat > battleData.enemy.stats[5].base_stat || p === 0){
         battleData.enemy.life -= playerDamage;
         if(battleData.enemy.life <= 0){
             diedPkmn(1);
@@ -93,7 +95,7 @@ export async function updateLife(playerDamage, enemyDamage, p = -1){
             }
         }
     }
-    else if(battleData.player.stats[5].base_stat < battleData.enemy.stats[5].base_stat || p == 1){
+    else if(battleData.player.stats[5].base_stat < battleData.enemy.stats[5].base_stat || p === 1){
         battleData.player.life -= enemyDamage;
         if(battleData.player.life <= 0){
             diedPkmn(0);
@@ -109,8 +111,9 @@ export async function updateLife(playerDamage, enemyDamage, p = -1){
         }
     }
     else{
-        let random = Math.floor(Math.random() * 2);
-        updateLife(playerDamage, enemyDamage, random);
+        if(playerIndex == 0){
+            updateLife(playerDamage, enemyDamage, 0);
+        }
     }
 }
 

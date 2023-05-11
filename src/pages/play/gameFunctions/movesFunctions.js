@@ -82,5 +82,3 @@ function endTurn() {
         pMove = false;
     });
 }
-
-
