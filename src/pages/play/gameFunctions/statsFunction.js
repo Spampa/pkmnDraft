@@ -126,7 +126,6 @@ function diedPkmn(index){
     else{
         battleData.enemy.pkmn--;
         initStats(false, true);
-        initMoves(4 - battleData.enemy.pkmn);
     }
     updatePkmnUI(4 - battleData.player.pkmn, 4 - battleData.enemy.pkmn);
 }

@@ -22,7 +22,6 @@ moves.children[3].addEventListener('click', () => {
 
 function sendMove(index) {
     if (playerMove != null) return;
-    console.log('Mossa Mandata');
     playerMove = playerPkmn[4 - battleData.player.pkmn].move[index];
     fetch(`https://pokeapi.co/api/v2/move/${playerMove.id}`).then(
         (response) => {
@@ -33,7 +32,6 @@ function sendMove(index) {
         getDamage(playerMove.power, battleData.enemy.stats).then((damage) => {
             playerMove = damage;
             insertMove(playerIndex + 'mP' + damage);
-            console.log('Mossa Fatta');
         });
     });
 }
@@ -45,7 +43,7 @@ const checkMoves = setInterval(() => {
     if(eMove && pMove) return;
     getMatchMove().then(response => {
         if(response?.data == undefined) return;
-        //console.log(response.data);
+        console.log(response.data);
 
         for (let i = 0; i < 3; i++) {
             if(response?.data?.moves[i]?.MOSSA == undefined) return;
